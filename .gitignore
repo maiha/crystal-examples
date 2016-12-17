@@ -1,0 +1,10 @@
+/bin/
+/lib/
+/.crystal/
+/.shards/
+/shard.lock
+/tmp/
+/crystal
+/crystal-examples
+/gitbook/
+/docker.log

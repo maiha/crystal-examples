@@ -1,0 +1,89 @@
+### REQUIRED : Without this setting it will not work properly.
+
+[crystal]
+src_dir = "crystal/src"	          # should be subdir for docker host mount
+#bin     = "crystal"               # use system compiler
+bin     = "./crystal/bin/crystal" # use compiled compiler
+
+### PREFERENCE : Environments
+
+[db]
+sqlite        = "examples.db"   # internal storage
+heuristic_jnl = "heuristic.jnl" # heuristic actions written in text
+
+[web]
+host = "0.0.0.0"
+port = 8080
+env  = "production" # "development", "production"
+
+### HIGHLIGHT : `highlith.js` settings
+
+[highlight]
+version = "9.14.2"
+lang    = "crystal"
+style   = "" # "sunburst", "xcode", "github-gist", ...
+
+[highlight.custom]
+# "comment"       = " #57A64A"	# <<# ...>>
+"comment"           = "#29a329"	# <<# ...>>
+"keyword"           = "#6679cc"	# <<def>> method(args)
+"title"             = "#3d62f5"	# def <<method>>(args)
+"params"            = "#E7CEDB"	# def method<<(args)>>
+"string"            = "#CC6633"	# foo = <<"hello">>
+"number"            = "#fd8b19" # foo = <<123>>
+"regexp"            = "#C85E7C" # foo = <</abc/>>
+"subst"             = "#daefa3" # foo = "...<<#{var}>>..."
+"symbol"            = "#3387cc" # foo = <<Code::>>Bar
+"literal"           = "#f1b43e" # foo = <<nil>>
+"template-variable" = "#FF0000" # <<{% ... %}>>
+"type"              = "#eaeaea"
+"class.title"       = "color:#bbbb00; text-decoration: underline;" # class <<Foo>>
+
+# "#3e87e3" "#81a2be" "#aa0d91" "#569cd6" "#CC6633" "#ad2bee"
+
+### LOGGING
+
+[db]
+query_logging = false
+
+[[logger]]
+path   = "STDOUT"
+level  = "INFO"
+format = "{{prog=[%s] }}{{message}}"
+colorize = true
+
+[[logger]]
+path   = "examples.log"
+level  = "DEBUG"
+format = "{{mark}},[{{time=%Y-%m-%d %H:%M:%S}}] {{prog=[%s] }}{{message}}"
+
+[[logger]]
+path   = "examples.err"
+level  = "ERROR"
+format = "{{mark}},[{{time=%Y-%m-%d %H:%M:%S}}] {{prog=[%s] }}{{message}}"
+
+### LOGIC : Heuristic Parameters controls compile and test
+
+[logic]
+
+
+### LOW PRIORITY : Not important but customizable settings
+
+[web]
+arrow_icon = "fas fa-arrow-right"
+
+header_title = "Crystal Examples"
+logo_icon    = "fab fa-cc-discover fa-2x"
+logo_color   = "#7A7F87"
+
+step1_head = "1. Config"
+step2_head = "2. DB"
+step3_head = "3. Extract"
+step4_head = "4. Compile"
+step5_head = "5. Test"
+
+step1_icon = "fas fa-cogs fa-4x"
+step2_icon = "fas fa-server fa-4x"
+step3_icon = "fas fa-cut fa-4x"
+step4_icon = "fas fa-running fa-4x"
+step5_icon = "fas fa-shield-alt fa-4x"

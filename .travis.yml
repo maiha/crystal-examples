@@ -1,0 +1,5 @@
+language: crystal
+services:
+  - docker
+script:
+  - make ci

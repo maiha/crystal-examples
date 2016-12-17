@@ -1,0 +1,90 @@
+// (setq js-indent-level 2)
+
+$(document).on('ajax:beforeSend', function() { NProgress.set(0.1); });
+$(document).on('pjax:beforeSend', function() { NProgress.set(0.1); });
+$(document).on('ajax:start'     , function() { NProgress.set(0.2); });
+$(document).on('pjax:start'     , function() { NProgress.set(0.2); });
+$(document).on('ajax:send'      , function() { NProgress.set(0.4); });
+$(document).on('pjax:send'      , function() { NProgress.set(0.4); });
+$(document).on('ajax:complete'  , function() { NProgress.set(0.8); });
+$(document).on('pjax:complete'  , function() { NProgress.set(0.8); });
+$(document).on('ajax:end'       , function() { NProgress.set(1.0); });
+$(document).on('pjax:end'       , function() { NProgress.set(1.0);
+  // Attach pjax handler to the new contents
+  window.PJAX('a.pjax');
+});
+
+// Open link with Ajax call
+function FIRE_AJAX(event) {
+  var href = $(this).attr('href');
+  var type = $(this).attr('method') || 'GET';
+  var container = $(this).attr('container') || '#content'
+
+  event.preventDefault();
+
+  console.log('debug: [AJAX] ' + type + ' ' + href);
+  $.ajax({
+    url: href,
+    type: type,
+    cache: false
+  }).done(function(msg) {
+    $(container).html(msg);
+  });
+
+  return false;
+}
+
+// Open link with Pjax call
+function FIRE_PJAX(event) {
+  var href = $(this).attr('href');
+  var type = $(this).attr('method') || 'GET';
+  var push = ! ( $(this).attr('pjax_push') == "false");
+  var container = $(this).attr('container') || '#content'
+  
+  event.preventDefault();
+
+  console.log('debug: [PJAX] ' + type + ' ' + href);
+  $.pjax({
+    url: href,
+    type: type,
+    cache: false,
+    push: push,
+    container: container
+  });
+
+  return false;
+}
+
+// Attach Ajax handler only once. (Idempotency)
+function AJAX(element) {
+  $(element).off('click', FIRE_AJAX).on('click', FIRE_AJAX);
+}
+
+// Attach Pjax handler only once. (Idempotency)
+function PJAX(element) {
+  $(element).off('click', FIRE_PJAX).on('click', FIRE_PJAX);
+}
+
+// module.exports = PJAX;
+
+function CE_ajax(href, container_id, type) {
+  var type = type || $(this).attr('method') || 'PUT';
+  console.log('debug: [AJAX] ' + type + ' ' + href);
+
+  event.preventDefault();
+  $.ajax({
+    url: href,
+    type: type
+  }).done(function(data, textStatus, jqXHR ) {
+    $(container_id).html(data);
+  }).fail(function(jqXHR, textStatus, errorThrown) {
+    $(container_id).append($('<span class="btn btn-danger btn-xs">').text(textStatus));
+  });
+
+  return false;
+}
+
+function CE_heuristic_require(snippet_id, name, container_id) {
+  var href = '/heuristic/require/' + snippet_id + '/' + encodeURIComponent(name);
+  return CE_ajax(href, container_id);
+}

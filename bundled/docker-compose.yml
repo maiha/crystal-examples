@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  crystal:
+    image: crystallang/crystal:nightly-build
+    command: crystal --version
+    network_mode: "host"
+    user: "${UID}:${GID}"
+    volumes:
+      - .:/v
+    working_dir: /v
+    environment:
+      - CRYSTAL_PATH=/v/crystal/src
+      - PATH=/v/crystal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
