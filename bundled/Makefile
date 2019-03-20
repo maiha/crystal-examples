@@ -8,12 +8,12 @@ export GID = $(shell id -g)
 
 .PHONY : web
 web:
-	docker-compose run --rm crystal ./crystal-examples web
+	@docker-compose run --rm crystal ./crystal-examples web
 
 .PHONY : crystal
 crystal:
-	docker-compose run --rm crystal bash -c "cd crystal && make"
+	@docker-compose run --rm crystal bash -c "cd crystal && make"
 
 .PHONY : console
 console:
-	docker-compose run --rm crystal bash
+	@docker-compose run --rm crystal bash

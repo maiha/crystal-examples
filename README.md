@@ -11,7 +11,7 @@ crystal examples checker
 First, specify a working directory and initialize or upgrade. Be careful when specifying an existing directory, as files such as Makefiles will be overwritten.
 
 ```console
-$ crystal-examples-dev setup .
+$ crystal-examples setup .
 Setting up working directory in ./
   ok         /tmp/work
   create     Makefile
@@ -67,6 +67,7 @@ Note that it will be used in docker container.
 
 ```console
 $ make web
+[production] Kemal is ready to lead at http://0.0.0.0:8080
 ```
 
 If you want to change setting like listen port, edit `config.toml`.
@@ -129,13 +130,13 @@ require digest/base.cr by:digest ...
 test fa5a9799... by:random ...
 ```
 
-See: [config/heuristic.jnl](./config/heuristic.jnl)
+See: [bundled/heuristic.jnl](./bundled/heuristic.jnl)
 
 ## Difficulty
 
 ### Annotations
 
-There are many candidates for example codes.
+There are various types of sample code.
 
 ```crystal
 lib LibTicker
@@ -157,11 +158,11 @@ Ideally the sample code should be annotated at this point.
 # ```
 ```
 
-At present, we are responding each time by accumulating empirical knowledge by manual housekeeping in [config/heuristic.jnl](./config/heuristic.jnl).
+At present, we are responding each time by accumulating empirical knowledge by manual housekeeping in [bundled/heuristic.jnl](./bundled/heuristic.jnl).
 
 ### API breaking changes
 
-Crystal often broke the stdlib API, especially `Time`, at each release.
+Crystal often broke the stdlib API compatibility, especially `Time`, at each release.
 For example, we have an example code like this.
 
 ```crystal
@@ -175,9 +176,10 @@ Our inner module `CommentSpec` convert this as follows.
 time.to_s.should eq( Time.parse("2016-02-15 10:20:30 UTC", "%F %T %z") )
 ```
 
-However, there is no guarantee that `Time.parse` and` Time.new` will work.
-And there is no alias for backward compatibility.
+However, there is no guarantee that `Time.parse` and` Time.new` will work with the current crystal version, and there is no alias for backwards compatibility.
+
 This is preventing the use within CI and automation.
+And, unfortunately, realistically, we can't perform validation about `time` related examples in current version.
 
 ## Development
 

@@ -14,6 +14,7 @@ Cmds.command "setup" do
   var config : Data::Config = Data::Config.current
   var wizard : Data::Wizard = Data::Wizard.new
   var result : Result = Result::OK
+  var program_path : String = build_program_path # "/usr/local/bin/crystal-examples"
 
   FILES = {
     "Makefile"           => Data::Bundled::MAKEFILE,
@@ -135,7 +136,7 @@ Cmds.command "setup" do
   end
 
   private def copy_app
-    src  = PROGRAM_NAME
+    src  = program_path
     dst  = "#{full_path}/#{PROGRAM_BIN}"
     this = Shard.git_description
     info = this.sub(/ /, " # ")
@@ -159,6 +160,19 @@ Cmds.command "setup" do
         abort shell.log
       end
     end
+  end
+
+  private def build_program_path : String
+    shell = Shell::Seq.run("/bin/which #{PROGRAM_NAME}")
+    if shell.success?
+      buf = shell.stdout.chomp
+      if buf =~ /\A(\S+)\Z/
+        return buf
+      end
+    end
+
+    warn "error: build_program_path (use PROGRAM_NAME itself)\n" + shell.log
+    return PROGRAM_NAME
   end
   
   private def log_message(msg : String, result : Result)

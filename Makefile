@@ -1,4 +1,4 @@
-SHELL = /bin/zsh
+SHELL = /bin/bash
 .SHELLFLAGS = -o pipefail -c
 
 export LC_ALL=C
@@ -25,6 +25,3 @@ ci: crystal-examples-dev spec
 .PHONY : spec
 spec:
 	docker-compose run --rm build crystal spec -v --fail-fast
-
-version:
-	./${PROG} --version
