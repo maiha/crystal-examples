@@ -2,6 +2,12 @@
 
 crystal examples checker
 
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/12258/54723697-c77f2480-4bab-11e9-9d03-3dc4df494ef1.png" width=200 />
+  <img src="https://user-images.githubusercontent.com/12258/54723703-d06ff600-4bab-11e9-847d-611effb1e481.png" width=200 />
+  <img src="https://user-images.githubusercontent.com/12258/54723801-22b11700-4bac-11e9-880a-9c17fc3b5645.png" width=200 />
+</p>
+
 ## Requirements
 - `crystal-examples` : linux x86_64 binary is [available](https://github.com/maiha/crystal-examples/releases)
 - `docker-compose`
