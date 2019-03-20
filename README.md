@@ -9,7 +9,7 @@ crystal examples checker
 </p>
 
 ## Requirements
-- `crystal-examples` : linux x86_64 binary is [available](https://github.com/maiha/crystal-examples/releases)
+- `crystal-examples` : linux x86_64 static binary is [available](https://github.com/maiha/crystal-examples/releases)
 - `docker-compose`
 
 ## Setup
