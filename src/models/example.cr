@@ -52,8 +52,18 @@ class Models::Example < Pon::Model
     Models::Heuristic.skip_compile?(sha1).try(&.delete)
     # 2. clear compile caches
     CompileCache.delete(self)
-    # 3. change compile status to unknown
+    # 3. change compiled status to unknown
     self.compiled = Status::UNKNOWN
+    save!
+  end
+
+  def delete_test_heuristic!
+    # 1. delete heuristic
+    Models::Heuristic.skip_test?(sha1).try(&.delete)
+    # 2. clear test caches
+    TestCache.delete(self)
+    # 3. change tested status to unknown
+    self.tested = Status::UNKNOWN
     save!
   end
 

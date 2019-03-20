@@ -24,7 +24,7 @@ class Data::Config < TOML::Config
   # [crystal]
   str "crystal/src_dir"
   str "crystal/bin"
-
+  
   # [db]
   str  "db/sqlite"
   str  "db/heuristic_jnl"

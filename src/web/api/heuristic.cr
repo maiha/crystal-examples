@@ -27,10 +27,10 @@ get "/heuristic/diff" do |env|
   }
 end
 
-# delete compile heuristic of this SHA1
-delete "/heuristic/compile/:id" do |env|
+# delete compile heuristic for the example
+delete "/heuristic/compile/:example_id" do |env|
   safe(env) {
-    example = Models::Example.find(param_i("id").to_i64)
+    example = Models::Example.find(param_i("example_id").to_i64)
     example.delete_compile_heuristic!
     render_compile_example(example.id)
   }
@@ -48,6 +48,15 @@ put "/heuristic/compile/:id/:reason" do |env|
 
     # reload the model to refresh view
     render_compile_example(example.id)
+  }
+end
+
+# delete test heuristic for the example
+delete "/heuristic/test/:example_id" do |env|
+  safe(env) {
+    example = Models::Example.find(param_i("example_id").to_i64)
+    example.delete_test_heuristic!
+    render_test_example(example.id)
   }
 end
 
