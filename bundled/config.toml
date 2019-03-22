@@ -4,6 +4,8 @@
 src_dir = "crystal/src"	          # should be subdir for docker host mount
 #bin     = "crystal"               # use system compiler
 bin     = "./crystal/bin/crystal" # use compiled compiler
+compiling_args = "-D preview_overflow" # crystal args for compiling
+testing_args   = "-D preview_overflow" # crystal args for testing
 
 ### PREFERENCE : Environments
 

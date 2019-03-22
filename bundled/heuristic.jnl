@@ -270,7 +270,6 @@ test e4f7ed9f664a0aa8519a45b315c766f2daff5c7b by:pseudo comment:http/client.cr:6
 test e528d8f786142a0965ace97cde91065ac1cff027 by:pseudo comment:file.cr:5:20190318
 test e7301e8e0647d2daccb02d1812a81ff1e39f1e8a by:pseudo comment:http/web_socket.cr:36:20190318
 test e80f336e3dc8f9e0fbb763fb24a50e6f169c8aaa by:pseudo comment:file_utils.cr:152:20190318
-test e855c3fadbb9b508979cee11f77b7c43d51f9cd3 by:wrong comment:exception.cr:135:20190320
 test ea6a2438307a2b5dd6e163d194fd21feaf185957 by:random comment:random.cr:22:20190318
 test ed05ac0b550e2db7271dfb65bdcc15cc6f71203b by:pending comment:slice.cr:279:20190318
 test f05405333771fbee1cb7f5385d4c926ad68022af by:random comment:system.cr:10:20190318

@@ -12,7 +12,7 @@ class Job::Compile
   var heuristics    = Heuristics.new
   var timeout       = 1.minute
   
-  def initialize(examples : Array(Example), @crystal : String)
+  def initialize(examples : Array(Example), @crystal : String, @args : String)
     examples.each(&.compiled = Data::Status::UNKNOWN)
     examples.sort_by(&.src).group_by(&.src).each do |src, ary|
       targets << generates_target(src: src, examples: ary.sort_by(&.seq))
@@ -106,7 +106,7 @@ class Job::Compile
     finished  = Channel(Shell::Seq).new
     timeouted = Channel(Time::Span).new
 
-    cmd = "LC_ALL=C #{@crystal} build -o /dev/null --no-color %s 2>&1" % target.path
+    cmd = "LC_ALL=C #{@crystal} build #{@args} -o /dev/null --no-color %s 2>&1" % target.path
     logger.debug cmd
     spawn do
       shell = Shell::Seq.run(cmd)

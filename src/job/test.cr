@@ -11,8 +11,8 @@ class Job::Test
   var targets       = Array(Target).new
   var heuristics    = Heuristics.new
   var timeout       = 1.minute
-  
-  def initialize(examples : Array(Example), @crystal : String)
+
+  def initialize(examples : Array(Example), @crystal : String, @args : String)
     examples.each(&.tested = Data::Status::UNKNOWN)
     examples.sort_by(&.src).group_by(&.src).each do |src, ary|
       targets << generates_target(src: src, examples: ary.sort_by(&.seq))
@@ -128,7 +128,7 @@ class Job::Test
 
     spawn do
       # Run as **code** rather than **spec** to capture stdout markers.
-      shell = Shell::Seq.run("cd #{working_dir} && LC_ALL=C #{@crystal} #{relative_path} 2>&1")
+      shell = Shell::Seq.run("cd #{working_dir} && LC_ALL=C #{@crystal} run #{@args} #{relative_path} 2>&1")
       finished.send(shell)
     end
 

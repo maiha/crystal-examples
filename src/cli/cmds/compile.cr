@@ -31,7 +31,7 @@ Cmds.command "compile" do
   
   task "run" do
     crystal = config.crystal_bin
-    compile = Compile.new(wiz.examples, crystal: crystal)
+    compile = Compile.new(wiz.examples, crystal: crystal, args: config.crystal_testing_args)
     compile.tap(&.logger = logger)
     compile.callback = ->(msg : Message) {
       info(msg.to_json)

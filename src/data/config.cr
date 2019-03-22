@@ -24,6 +24,8 @@ class Data::Config < TOML::Config
   # [crystal]
   str "crystal/src_dir"
   str "crystal/bin"
+  str "crystal/compiling_args"
+  str "crystal/testing_args"
   
   # [db]
   str  "db/sqlite"
