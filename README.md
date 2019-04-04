@@ -185,7 +185,6 @@ time.to_s.should eq( Time.parse("2016-02-15 10:20:30 UTC", "%F %T %z") )
 However, there is no guarantee that `Time.parse` and` Time.new` will work with the current crystal version, and there is no alias for backwards compatibility.
 
 This is preventing the use within CI and automation.
-And, unfortunately, realistically, we can't perform validation about `time` related examples in current version.
 
 ## Development
 

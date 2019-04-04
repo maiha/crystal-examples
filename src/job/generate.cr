@@ -125,15 +125,12 @@ class Job::Generate
   ######################################################################
   ### prelude
 
-  # PENDING: `Time.parse(a,b)` doesn't work in master
-  
   PRETTY_TIME_CODE = {{ system("cat " + env("PWD") + "/lib/pretty/src/pretty/time.cr").stringify }}
 
   def prelude : String
     String.build do |s|
       s.puts "# https://github.com/maiha/pretty.cr/blob/master/src/pretty/time.cr"
       s.puts PRETTY_TIME_CODE
-      s.puts "def Time.parse(value : String, fmt : String); Pretty::Time.parse(value); end"
     end
   end
 end

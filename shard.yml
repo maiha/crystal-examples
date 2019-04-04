@@ -24,7 +24,7 @@ dependencies:
 
   pretty:
     github: maiha/pretty.cr
-    version: ">= 0.7.0"
+    version: ">= 0.7.2"
 
   sqlite3:
     github: crystal-lang/crystal-sqlite3

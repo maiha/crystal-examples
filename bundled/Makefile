@@ -6,6 +6,13 @@ export LC_ALL=C
 export UID = $(shell id -u)
 export GID = $(shell id -g)
 
+.PHONY : all
+all: upgrade web
+
+.PHONY : upgrade
+upgrade:
+	@crystal-examples setup .
+
 .PHONY : web
 web:
 	@docker-compose run --rm crystal ./crystal-examples web

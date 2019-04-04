@@ -25,7 +25,7 @@ class Data::Wizard
   var compact_tested_counts   = Models::Example.compact_tested_counts
   
   var extract_counts : Hash(Status, Int64) = try_extract_counts.get? || Hash(Status, Int64).new
-  var compile_counts : Hash(Status, Int64) = try_compiled_counts.get? || Hash(Status, Int64).new
+  var compiled_counts : Hash(Status, Int64) = try_compiled_counts.get? || Hash(Status, Int64).new
   var tested_counts  : Hash(Status, Int64) = try_tested_counts.get?    || Hash(Status, Int64).new
   var light_examples : Array(Models::Example) = try_light_examples.get? || Array(Models::Example).new
 
@@ -71,7 +71,7 @@ class Data::Wizard
   var ng5     : Int64  = tested_counts[Status::FAILURE]? || 0_i64
   var un5     : Int64  = tested_counts[Status::UNKNOWN]? || 0_i64
 
-  var valid5  : Bool   = fully_tested? && (cnt5 > 0) && (cnt5 == ok5 + pd5)
+  var valid5  : Bool   = (pct5 == 100) && (cnt5 > 0) && compact_tested_counts.keys.all?(&.ok?)
   var css5    : String = valid5 ? "passed" : "failed"
   var alert5  : String = valid5 ? "alert-success" : ((pct5 == 0) ? "alert-secondary" : "alert-danger")
 
@@ -86,7 +86,7 @@ class Data::Wizard
     valids.each_with_index do |ok, i|
       return "step#{i+1}" if !ok
     end
-    return "step1"
+    return "step5"
   end
 
   ######################################################################
@@ -106,7 +106,7 @@ class Data::Wizard
 
   def try_compiled : Try(Bool)
     Try(Bool).try {
-      raise NotReady.new("No examples found. Extract first.") if compile_counts.empty?
+      raise NotReady.new("No examples found. Extract first.") if compiled_counts.empty?
       raise NotReady.new("It has not been fully compiled. (#{compiled_pct}%)") if compiled_pct != 100
       true
     }
@@ -134,14 +134,14 @@ class Data::Wizard
   end
   
   private def build_compiled_pct : Int32
-    if compile_counts.empty?
+    if compiled_counts.empty?
       return 0
     else
-      total = compile_counts.values.sum
+      total = compiled_counts.values.sum
       if total == 0
         return 0
       else
-        unknown = compile_counts[Data::Status::UNKNOWN]? || 0
+        unknown = compiled_counts[Data::Status::UNKNOWN]? || 0
         return (((total - unknown) * 100.0) / total).trunc.to_i
       end
     end
@@ -155,7 +155,8 @@ class Data::Wizard
       if total == 0
         return 0
       else
-        return (((total - un5) * 100.0) / total).trunc.to_i
+        unknown = tested_counts[Data::Status::UNKNOWN]? || 0
+        return (((total - unknown) * 100.0) / total).trunc.to_i
       end
     end
   end
