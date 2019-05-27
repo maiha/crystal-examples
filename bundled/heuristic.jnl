@@ -202,6 +202,7 @@ test 67a758154b1021e4d4d8224fadaabfa80e4c053a by:random comment:random.cr:93:201
 test 67eec7a405524827b08cd0168c5d4690b75c60fa by:random comment:random.cr:73:20190318
 test 68df4c6e3d590efea4a35391062b57ac0bdfb441 by:pseudo comment:socket/unix_server.cr:1:20180101
 test 6b247c4211cd50eb215bf14eaeca65e9bf8521aa by:pending comment:string/utf16.cr:79:20190318
+test 6c700c621142583d59bb7663e78a6fe45061c439 by:pseudo comment:http/formdata.cr:12:20190425
 test 6dce408a988ee8a4a28324e32bc6e5b51ad4f9f1 by:random comment:random.cr:360:20190318
 test 6e6df379d3e4124ffd125c2cc908c8776988b6c5 by:random comment:system.cr:19:20190318
 test 71b3e90f46c726e1aa1cc13660a9cf6489eef875 by:wrong comment:humanize.cr:276:20190318
@@ -262,6 +263,7 @@ test c7bbe302f5f58cac12966d4da518b35258d66264 by:pseudo comment:socket/server.cr
 test c7d36e95ca5040c5a9e1bbc37e89ac418165a2bd by:pseudo comment:http/server.cr:16:20190318
 test c8ad091078abe4f769debb73421aac2a11d769b3 by:pseudo comment:socket.cr:168:20190318
 test c9f2dec80c7a46f828dc999dc67d2a7b2808b46f by:pseudo comment:process.cr:503:20190318
+test caaf4344c24b7b12d0634a9df23036139f6e7f24 by:pseudo comment:http/server.cr:233:20190425
 test cb75eb6a8833a14c84a9178f881eb2354086d216 by:pseudo comment:socket/tcp_server.cr:2:20180101
 test cd80a22e5ed1af6d60a2097e9438c83fe0f2927e by:pseudo comment:http/client.cr:633:20190318
 test d3da269021595eebf2d06a55936b22479eb124d4 by:pseudo comment:socket/udp_socket.cr:20:20190318
