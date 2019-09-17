@@ -19,6 +19,10 @@ release:
 rebuild:
 	docker-compose build --no-cache build
 
+.PHONY : install
+install: release
+	cp -p bin/crystal-examples /usr/local/bin/
+
 .PHONY : ci
 ci: crystal-examples-dev spec
 
