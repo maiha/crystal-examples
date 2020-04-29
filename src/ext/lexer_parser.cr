@@ -42,6 +42,9 @@ class CommentSpec::LexerParser
 #    klass: ExpectStringEqual,
 #    value: {code: md[1], eq: md[2].strip}
 
+    when /^=>\s+(Regex::MatchData\(.*?\))/
+      build ExpectStringEqual, {code: code, eq: escape_double_quotes($1)}
+
     when /^=>\s+#<([A-Z][A-Za-z0-9]+(::[A-Z][A-Za-z0-9]+)*).*?>/
       # NOTE: check with `class.to_s` for the case of private class like `Indexable::ItemIterator`
       build ExpectClass, {code: code, eq: $1}
@@ -72,10 +75,10 @@ class CommentSpec::LexerParser
 
     when /^=>\s*(\d{20,}|\d+\/\d+|BitArray\[.*?|.*?\d+\.\d+i)$/
     # FoundLiteral
-      build ExpectStringEqual, {code: code, eq: $1.gsub(/"/, "\\\"")}
+      build ExpectStringEqual, {code: code, eq: escape_double_quotes($1)}
 
     when /^=>\s*([A-Z][A-zA-Z0-9_]+(::[A-Z][A-zA-Z0-9_]+)*\(@.*)$/
-      build ExpectStringEqual, {code: code, eq: $1.gsub(/"/, "\\\"")}
+      build ExpectStringEqual, {code: code, eq: escape_double_quotes($1)}
 
     when /^=>\s*"(.*?)"$/
       build ExpectStringEqual, {code: code, eq: $1}
@@ -109,4 +112,8 @@ end
 
 private def to_time(str, opt)
   %(::Pretty::Time.parse("%s%s")) % [str, opt]
+end
+
+private def escape_double_quotes(str)
+  str.gsub(/"/, "\\\"")
 end

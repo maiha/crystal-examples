@@ -35,7 +35,7 @@ dependencies:
     version: ">= 0.4.2"
 
   toml-config:
-    github: maiha/pon.cr
+    github: maiha/toml-config.cr
     version: ">= 0.5.0"
 
   kemal:
