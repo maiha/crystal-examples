@@ -15,6 +15,7 @@ compile 181cc958707734ae76fc0a3720a85099a3f7be9c by:pseudo comment:object.cr:1:2
 compile 190dde8e1b5b8ae30c4539cb992430e7ec87e88b by:pseudo comment:concurrent/future.cr:145:20190320
 compile 1a331991389b80e73e3e48de5ffa8f0e6fb58215 by:pseudo comment:oauth/consumer.cr:11:20190320
 compile 1c3b060d6eefde59166dd8416712d4139edb1474 by:macro comment:object.cr:66:20180101
+compile 1c70b53ca14a07c8d7bd5968168d049c3e01a65f by:general comment:log/format.cr:187:20201010
 compile 1c7b2e7edaa372df5b8728069e14e78ee99d44c5 by:macro comment:object.cr:50:20180101
 compile 1d95b1ee288d1119c58ea943aa080a06f8ccb2e2 by:macro comment:object.cr:67:20180101
 compile 20946d22a31bb96938ffa6422d2100ef510d49dc by:macro comment:object.cr:48:20180101
@@ -22,6 +23,7 @@ compile 25e347fdbe367737195e1fc3b3d7e339a637f87a by:macro comment:object.cr:44:2
 compile 2666c75afa2068a7f67dba1c69ef99c39b85b598 by:pseudo comment:ecr.cr:76:20190320
 compile 2ac8b325200e61e0a297b26207ac490af8345f66 by:pseudo comment:socket/udp_socket.cr:2:20180101
 compile 2d3723913097260d6bb2944d111d2f73e7b1c14e by:pseudo comment:proc.cr:4:20180101
+compile 2f43308bb7f2c13809a33b0d37c521eb1e2305a2 by:pseudo comment:log.cr:23:20201010
 compile 30d78e435fab97a4114ca2ebca4ce759b4d1788c by:pseudo comment:ecr.cr:53:20190320
 compile 330d55b2ea1911fffa670c4a3261c41ce9b1c4e5 by:macro comment:object.cr:32:20180101
 compile 369e5bfb532bc5613f6b454df60d5263b330138a by:pseudo comment:ecr/macros.cr:64:20190320
@@ -46,6 +48,7 @@ compile 5bc2bd5ceca983339961164c03dfbe375373c731 by:macro comment:object.cr:25:2
 compile 6150525996f3b68c2cb561e40fbfca01f686d664 by:macro comment:object.cr:65:20180101
 compile 618763062fd0a52c69b9faf2db5df73a848bfd6b by:pseudo comment:crystal/main.cr:75:20190320
 compile 64370c1aabc7e7442085f4ed5c33bc5ac415e71d by:macro comment:http/client.cr:25:20180101
+compile 661ad71499adeadece3ae00bdd469ab90c4b7d85 by:pseudo comment:log/main.cr:163:20201010
 compile 66bd9d50cffa675e9fe744d9586fe79fda4c04a0 by:macro comment:random.cr:304:20190726
 compile 66fbd4ae5b2fa2c7281368a19fe3b1ff507a4505 by:macro comment:object.cr:63:20180101
 compile 67a70acf44fc57620c7dfc7f4e1c9246bf46fc9e by:pseudo comment:object.cr:2:20180101
@@ -62,6 +65,7 @@ compile 822fb15f8f29906817635c72cd84911187d8748f by:macro comment:object.cr:18:2
 compile 86df30efecea538a41eb0afda445a79ae6ad5aba by:macro comment:object.cr:21:20180101
 compile 8909be47b6462393bb803ace58d6bfea5f2090df by:macro comment:object.cr:28:20180101
 compile 8bc924a18a68c60079fff7cf23ab57fb40a84250 by:macro comment:object.cr:37:20180101
+compile 8bf32aa097dccfa2ccc300e1c166a8fa284dcb3e by:general comment:log/format.cr:182:20201010
 compile 8c2eba083e5d04e84aa23e6f4817047e1d4ddf70 by:pending comment:time.cr:27:20180101
 compile 8c807c82148ce1aaeecba03355e35de9a38732cb by:pseudo comment:ecr/macros.cr:52:20190320
 compile 8e1447f6f65662ace2918f82b39c8eac5780f03b by:macro comment:object.cr:59:20180101
@@ -73,6 +77,7 @@ compile 96347f1294cfcc8793826c128fd62bf907df61b2 by:macro comment:http/client.cr
 compile 964aa24f931cd1f41723f7dc90941dcca64458fb by:wrong comment:json/serialization.cr:68:20190320
 compile 96661d2cbed8e83fc104d1b59c25cb3e50d82e7e by:macro comment:object.cr:17:20180101
 compile 9c0c06f67807182804ace494eb4c3855e6cae9a1 by:pseudo comment:ecr/macros.cr:10:20190320
+compile 9c0d07cbb23ae37d9fe3d079f47011e755731f2d by:general comment:log/format.cr:192:20201010
 compile 9ca1ba7545b5d092ae6f79cd2f8068bed8e65f86 by:pseudo comment:ecr.cr:23:20190320
 compile 9d48bbfc15c26374361b19e4ea3d1e7784e2faa4 by:wrong comment:json/serialization.cr:5:20180101
 compile 9fd3f35c9a1e13de3c4db8ca594910f0ea7fd188 by:pseudo comment:enum.cr:254:20190320
@@ -84,8 +89,10 @@ compile a7e1aafb6400a5e59a0806195aec310a34ff1c9f by:pseudo comment:ecr.cr:100:20
 compile aae084a775c53bb237465d532343db1a2e9ac09c by:macro comment:object.cr:16:20180101
 compile ab5b796aa2c1ef60471a6ffc97849d41163f5861 by:macro comment:object.cr:34:20180101
 compile abf6c9da8b122f80563bb9c0e59bc54e9de8f59c by:pseudo comment:enum.cr:260:20190320
+compile ada4feb4f1c82f58a2da7d9c1e645b049766e46c by:pseudo comment:crystal/main.cr:80:20201010
 compile b0cf2cc812a6c22041022b4b887a996e185022c5 by:pseudo comment:ecr.cr:29:20190320
 compile b223c7a489dec6e6c2cf5b5bba6324e55c686924 by:macro comment:object.cr:49:20180101
+compile b7833a225a97627b5de40f01a242b7d13f26ee58 by:pseudo comment:log.cr:109:20201010
 compile b9a90efb4f35659e6407c4a634ab8eaec86547af by:macro comment:object.cr:30:20180101
 compile bdabdb1db796c085f4bb35c04633015f2104e83c by:macro comment:object.cr:23:20180101
 compile bdad404fb8f64c37a95c11c6b40740976233c4b5 by:macro comment:http/client.cr:22:20180101
@@ -163,8 +170,10 @@ test 0ba6701ee127d205d46a7be223ad9792a0bfc004 by:pseudo comment:mime.cr:55:20190
 test 0c744ab3e766416622fdee245a880462455927e5 by:pseudo comment:http/server.cr:180:20190318
 test 0d52b18728022caf36fe52f814be69b2442dfa4e by:pseudo comment:socket.cr:156:20190318
 test 0f3b187602d00bcc5e7c783118d08c60b21165f6 by:random comment:random.cr:329:20190318
+test 0f7e83dddc5ac0881c629337fc3adb8b741a7490 by:random comment:yaml/to_yaml.cr:157:20201011
 test 0fc8cf234be35eb94a1a8c4533d999faa91297ad by:random comment:random.cr:316:20190318
 test 1073cdf264ae535018b5c42a0f77da7cddf28729 by:pseudo comment:socket.cr:219:20190318
+test 11d3a93277e44016624f6befdbb3fa03bce5189b by:random comment:option_parser.cr:43:20201011
 test 12e127d7c925db31f65058662ea942ea918d6579 by:pending comment:yaml/schema/core.cr:58:20190320
 test 14ecc892f033f92dacdd8f4f544d25499bc5f284 by:pseudo comment:http/client.cr:21:20190320
 test 16874422548d5b44ca259ef5a716a41dae42be4e by:random comment:random/secure.cr:9:20190318
@@ -183,6 +192,7 @@ test 26d99f9f258b54f0e6ed6ebe007a4acdd1797a47 by:pseudo comment:file_utils.cr:25
 test 2ac8b325200e61e0a297b26207ac490af8345f66 by:pseudo comment:socket/udp_socket.cr:46:20190318
 test 2f088de1720f08480c3695f6c08e8c3968ae7aa4 by:pseudo comment:file_utils.cr:169:20190318
 test 2f3928805ff9ff268edbff3e82f0760d4f8f1f68 by:pseudo comment:kernel.cr:78:20190318
+test 2f637e37a6b901909166b4a2c61ad262c8ecc659 by:random comment:log/format.cr:38:20201011
 test 30caa32d0d76aa9e3e34b865addcfbe984fa73f8 by:pseudo comment:socket/udp_socket.cr:80:20190318
 test 34712baddda57607f3c87ffb70034fedb3dd47ef by:pseudo comment:time.cr:328:20190404
 test 347b573a6ca154046205f7b225d1a879fbaf2af9 by:random comment:path.cr:675:20200429
@@ -208,6 +218,7 @@ test 4bd6c6fa4b30e85a2e6c540b69c1f6112144b74e by:pending comment:time/span.cr:7:
 test 4c2ecc873d4f4e97f57937ed7d36966be07a6a44 by:pseudo comment:file_utils.cr:310:20190319
 test 5284918c70876ea307f40c198d0ccac8c0b1d189 by:pseudo comment:io/console.cr:10:20190318
 test 52d87d0f781e52a5317bbe8d9562aa5cb7af456e by:random comment:file.cr:23:20180101
+test 53d5f3e0892dd941437afd9b808ec52f6d8eb6df by:random comment:json/to_json.cr:185:20201011
 test 5502ddb884bb95b6b839798f50f65ab03b54457c by:pseudo comment:http/server.cr:49:20190318
 test 58c78326ce29856018bd8a56438363bfafb6280d by:pending comment:yaml/serialization.cr:344:20200429
 test 5a79ebe0aa41221d0e0b8c86931faf77ab582fc0 by:random comment:file/tempfile.cr:40:20180101
@@ -276,6 +287,7 @@ test a0636f18c73e5fca7285c9653f6efdc7c4eea175 by:pseudo comment:socket.cr:272:20
 test a2194daefbcdab18c5c27a4e5f0721bf6b2f3243 by:random comment:mime/multipart.cr:95:20190318
 test a37167735299d8531de9b8a4cb9dbaaa84fe82e6 by:pseudo comment:file_utils.cr:347:20190318
 test a3fbb2265a5736c39a7dd9dadc5bd52681aed4b7 by:pending comment:time/span.cr:15:20200429
+test a490eebd2593e92d50a5466e85a020efdcb84259 by:random comment:json/to_json.cr:212:20201011
 test a50e5c86e81c8ff9f8d5b823a45cb814a906a20c by:random comment:time.cr:23:20190318
 test a66434673f9954af55f7f0dcfb66242f0cae21ea by:pseudo comment:file.cr:167:20190320
 test a773186424e294b3a0c04c866695154205a084b7 by:pseudo comment:compress/zip/writer.cr:7:20200429
@@ -313,10 +325,12 @@ test d6cfd0521f60c05665cce6c2c1d2e42e7902eafd by:pseudo comment:socket.cr:202:20
 test d784b9621188c14a11739f053838e0bec3dc992b by:pending comment:regex.cr:503:20200429
 test d7a3d94cd58ca2e8c82ddf34e8444ffefaac59f2 by:random comment:primitives.cr:41:20190318
 test d7fd7a0f40ecffb7e32b6ed9666d4a4b66759fb3 by:pending comment:named_tuple.cr:146:20190318
+test dad8d3d46a1cc1eed42d824e86c365b0cbfdb2ec by:pseudo comment:http/web_socket.cr:122:20201011
 test dd8b29c2fddc8cda567b62622253e655f0fe1d2f by:pending comment:time/span.cr:74:20200429
 test defe69c241a21b02aeafc3ffb5338f8d0f7dc688 by:random comment:path.cr:17:20190402
 test df2792327f5f415f4183764382d38e57a960356a by:pseudo comment:socket/server.cr:4:20180101
 test e346ffd0c33ee12bee0f3fcba68caa50257fce7c by:pseudo comment:http/client.cr:606:20190318
+test e395d4c1caf4d08b67ee8d083fdaeb63593500a2 by:random comment:benchmark.cr:144:20201011
 test e39ba6099a0ac914f6b6a45fb3f507c6cd35e458 by:pseudo comment:socket.cr:288:20190318
 test e44cc2fa8a10dd2148df71d5634686465443c718 by:pseudo comment:file.cr:341:20190320
 test e4f7ed9f664a0aa8519a45b315c766f2daff5c7b by:pseudo comment:http/client.cr:618:20190318
