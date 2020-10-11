@@ -2,7 +2,7 @@ version: '2'
 
 services:
   crystal:
-    image: crystallang/crystal:0.34.0
+    image: crystallang/crystal:${CRYSTAL_VERSION}-build
     command: crystal --version
     network_mode: "host"
     user: "${UID}:${GID}"
@@ -13,7 +13,7 @@ services:
       - CRYSTAL_PATH=/v/crystal/src
       - PATH=/v/crystal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   formatter:
-    image: crystallang/crystal:0.34.0
+    image: crystallang/crystal:${CRYSTAL_VERSION}-build
     command: crystal --version
     network_mode: "host"
     user: "${UID}:${GID}"

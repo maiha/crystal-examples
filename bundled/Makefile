@@ -24,3 +24,7 @@ crystal:
 .PHONY : console
 console:
 	@docker-compose run --rm crystal bash
+
+.PHONY : console-root
+console-root:
+	@(unset UID; unset GID; docker-compose run --rm crystal bash)

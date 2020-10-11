@@ -8,18 +8,3 @@ services:
     volumes:
       - .:/v
     working_dir: /v
-
-  crystal:
-    # image: crystallang/crystal:0.27.2
-    image: crystallang/crystal:nightly-build
-    command: /v/bin/crystal-examples-dev web
-    network_mode: "host"
-    ports:
-      - 8080:8080
-    user: "${UID}:${GID}"
-    volumes:
-      - .:/v
-    working_dir: /v
-    environment:
-      - CRYSTAL_PATH=/v/crystal/src
-      - PATH=/v/crystal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

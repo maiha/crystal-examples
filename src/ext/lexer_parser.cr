@@ -32,6 +32,9 @@ class CommentSpec::LexerParser
     end
 
     case doc?.to_s.strip
+    when /^raises\s+"(.*?)"/
+      build ExpectRaises, {code: code, err: "Exception"}
+
     when /^raises\s+([A-Z][A-Za-z0-9]+(::[A-Z][A-Za-z0-9]+)*)/
       build ExpectRaises, {code: code, err: $1}
 
