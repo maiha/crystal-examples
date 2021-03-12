@@ -6,13 +6,13 @@ module Data::Errors
 
   class UnexpectedEnd < Exception
     include Parsing
-    property path
-    property line_no
-    property line
-    property current
-    property comments
+    property path     : String
+    property line_no  : Int32
+    property line     : String
+    property current  : Comment
+    property comments : Array(Comment)
     
-    def initialize(@path : String, @line_no : Int32, @line : String, @current : Comment, @comments : Array(Comment))
+    def initialize(@path, @line_no, @line, @current, @comments)
       msg = String.build do |s|
         s << "#{path}:#{line_no}: unexpected example end\n"
         s << current.source

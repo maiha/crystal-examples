@@ -26,7 +26,6 @@ module Web::Job
       config   = Data::Config.current
       examples = Data::Wizard.new(config).examples
       compile  = ::Job::Compile.new(examples, crystal: config.crystal_bin, args: config.crystal_testing_args)
-      compile.logger = Pon.logger
       run(compile)
     }
   end
@@ -41,7 +40,6 @@ module Web::Job
     config   = Data::Config.current
     examples = Data::Wizard.new(config).examples
     test = ::Job::Test.new(examples, crystal: config.crystal_bin, args: config.crystal_testing_args)
-    test.logger = Pon.logger
     Try(Bool).try {
       run(test)
     }

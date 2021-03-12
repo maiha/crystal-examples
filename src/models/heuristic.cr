@@ -92,7 +92,7 @@ class Models::Heuristic < Pon::Model
     "#{action} #{target} by:#{by} comment:#{comment}"
   end
 
-  def self.try_jnl(line : String) : Try(Heuristic)
+  def self.try_jnl(line : String) : Failure(Models::Heuristic) | Success(Models::Heuristic)
     Try(Heuristic).try{ from_jnl(line) }
   end
 
@@ -117,7 +117,7 @@ class Models::Heuristic < Pon::Model
         when Success
           try.get.save!
         when Failure
-          Pon.logger.error(try.err?.to_s)
+          Log.error { try.err?.to_s }
         end
       end
     end

@@ -19,6 +19,12 @@ release:
 rebuild:
 	docker-compose build --no-cache build
 
+native/crystal-examples-dev:
+	shards build --link-flags "-static" crystal-examples-dev
+
+native/crystal-examples:
+	shards build --link-flags "-static" crystal-examples --release
+
 .PHONY : install
 install: release
 	cp -p bin/crystal-examples /usr/local/bin/

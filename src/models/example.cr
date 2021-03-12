@@ -78,7 +78,7 @@ class Models::Example < Pon::Model
   def self.compact_compiled_counts : Hash(Status, Int64)
     hash = Hash(Status, Int64).new
     count_by_compiled.each do |key, val|
-      status = Status.from_value((key.value / 100) * 100)
+      status = Status.from_value(((key.value / 100) * 100).to_i)
       hash[status] = (hash[status]? || 0_i64) + val
     end
     hash
@@ -87,19 +87,19 @@ class Models::Example < Pon::Model
   def self.compact_tested_counts : Hash(Status, Int64)
     hash = Hash(Status, Int64).new
     count_by_tested.each do |key, val|
-      status = Status.from_value((key.value / 100) * 100)
+      status = Status.from_value(((key.value / 100) * 100).to_i)
       hash[status] = (hash[status]? || 0_i64) + val
     end
     hash
   end    
 
-  def self.try : Try(Array(Example))
+  def self.try : Failure(Array(Example)) | Success(Array(Example))
     Try(Array(Example)).try {
       all("ORDER BY src, seq")
     }
   end
 
-  def self.try_light : Try(Array(Example))
+  def self.try_light : Failure(Array(Example)) | Success(Array(Example))
     Try(Array(Example)).try {
       Models::Example.all(["src", "seq", "compiled", "tested"], "ORDER BY src,seq")
     }

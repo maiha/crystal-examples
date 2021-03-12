@@ -1,7 +1,6 @@
 module Job::Worker
-  abstract def run : Nil
+  abstract def run : Bool
 
-  var logger  = Logger.new(STDOUT)
   var running = false
   var callback : Proc(Message, Bool) = ->(msg : Message){ true }
 

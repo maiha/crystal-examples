@@ -40,13 +40,13 @@ class Models::CompileCache < Pon::Model
     @log         = ""
     @error_type  = Error::NOT_FOUND
     @error_value = ""
-    @started_at  = Time.now
+    @started_at  = Pretty.now
     @stopped_at  = nil
     save!
   end
 
   def stop!
-    @stopped_at = Time.now
+    @stopped_at = Pretty.now
     save!
   end
 

@@ -1,16 +1,18 @@
 class Data::Wizard
+  include Models
+  
   getter config
 
   record Table, name : String, count : Int32, exists : Bool, schema : String
 
   # IO
   var try_sources = Try(Array(Models::Source)).try { Models::Source.where("count > 0 OR error <> ''") }
-  var try_examples       : Try(Array(Models::Example)) = Models::Example.try
-  var try_light_examples : Try(Array(Models::Example)) = Models::Example.try_light
-  var try_extract_counts : Try(Hash(Status, Int64)) = Try(Hash(Status, Int64)).try { Models::Source.count_by_extract }
-  var try_compiled_counts  : Try(Hash(Status, Int64)) = Try(Hash(Status, Int64)).try { Models::Example.count_by_compiled }
-  var try_tested_counts  : Try(Hash(Status, Int64)) = Try(Hash(Status, Int64)).try { Models::Example.count_by_tested }
-  
+  var try_examples        : Failure(Array(Example)) | Success(Array(Example)) = Models::Example.try
+  var try_light_examples  : Failure(Array(Example)) | Success(Array(Example)) = Models::Example.try_light
+  var try_extract_counts  : Failure(Hash(Status, Int64)) | Success(Hash(Status, Int64)) = Try(Hash(Status, Int64)).try { Models::Source.count_by_extract }
+  var try_compiled_counts : Failure(Hash(Status, Int64)) | Success(Hash(Status, Int64)) = Try(Hash(Status, Int64)).try { Models::Example.count_by_compiled }
+  var try_tested_counts   : Failure(Hash(Status, Int64)) | Success(Hash(Status, Int64)) = Try(Hash(Status, Int64)).try { Models::Example.count_by_tested }
+
   # common data
   var sources  : Array(Models::Source)  = try_sources.get?  || Array(Models::Source).new
   var examples : Array(Models::Example) = try_examples.get? || Array(Models::Example).new
@@ -45,7 +47,7 @@ class Data::Wizard
   var alert2  : String = valid2 ? "alert-success" : "alert-secondary"
 
   # 3. extract
-  var try3    : Try(Bool) = try_extracted
+  var try3    : Failure(Bool) | Success(Bool) = try_extracted
   var cnt3    : Int32  = sources.size
   var pct3    : Int32  = extracted_pct
   var counts3 : Hash(Status, Int64) = extract_counts
@@ -96,7 +98,7 @@ class Data::Wizard
   end
 
   # returns Try(true) or raises the reason within Try
-  def try_extracted : Try(Bool)
+  def try_extracted : Failure(Bool) | Success(Bool)
     Try(Bool).try {
       raise NotReady.new("No examples found.") if light_examples.empty?
       raise NotReady.new("It has not been fully extracted. (#{extracted_pct}%)") if extracted_pct != 100
@@ -104,7 +106,7 @@ class Data::Wizard
     }
   end
 
-  def try_compiled : Try(Bool)
+  def try_compiled : Failure(Bool) | Success(Bool)
     Try(Bool).try {
       raise NotReady.new("No examples found. Extract first.") if compiled_counts.empty?
       raise NotReady.new("It has not been fully compiled. (#{compiled_pct}%)") if compiled_pct != 100
@@ -112,7 +114,7 @@ class Data::Wizard
     }
   end
 
-  def try_tested : Try(Bool)
+  def try_tested : Failure(Bool) | Success(Bool)
     Try(Bool).try {
       raise NotReady.new("It has not been fully tested. (#{tested_pct}%)") if tested_pct != 100
       true

@@ -2,53 +2,41 @@ name: crystal-examples
 version: 0.5.4
 
 dependencies:
-  app:
-    github: maiha/app.cr
-    version: 0.5.0
-
   comment-spec:
     github: maiha/comment-spec.cr
-    version: 0.4.0
 
   cmds:
     github: maiha/cmds.cr
-    verison: ">= 0.3.3"
-
-  composite_logger:
-    github: maiha/composite_logger.cr
-    version: ">= 0.3.2"
 
   shell:
     github: maiha/shell.cr
-    version: 0.4.0
+
+  try:
+    github: maiha/try.cr
 
   pretty:
     github: maiha/pretty.cr
-    version: ">= 0.7.2"
+
+  shard:
+    github: maiha/shard.cr
 
   sqlite3:
     github: crystal-lang/crystal-sqlite3
-    version: 0.10.0
 
   pon:
     github: maiha/pon.cr
-    version: ">= 0.4.2"
 
   toml-config:
     github: maiha/toml-config.cr
-    version: ">= 0.5.0"
 
   kemal:
     github: kemalcr/kemal
-    version: 0.25.0
 
   slang:
     github: jeromegn/slang
-    version: 1.7.1
 
   crustache:
     github: MakeNowJust/crustache
-    version: 2.4.0
     
 authors:
   - maiha <maiha@wota.jp>

@@ -43,7 +43,7 @@ put "/heuristic/compile/:id/:reason" do |env|
       action: Models::Heuristic::ACTION_COMPILE,
       target: example.sha1,
       by: param("reason"),
-      comment: example.clue + Time.now.to_s(":%Y%m%d")
+      comment: example.clue + Pretty.now.to_s(":%Y%m%d")
     )
 
     # reload the model to refresh view
@@ -67,7 +67,7 @@ put "/heuristic/test/:id/:reason" do |env|
       action: Models::Heuristic::ACTION_TEST,
       target: example.sha1,
       by: param("reason"),
-      comment: example.clue + Time.now.to_s(":%Y%m%d")
+      comment: example.clue + Pretty.now.to_s(":%Y%m%d")
     )
 
     # reload the model to refresh view
@@ -83,7 +83,7 @@ put "/heuristic/require/:id/:name" do |env|
       action: "require",
       target: example.src,
       by: name,
-      comment: example.clue + Time.now.to_s(":%Y%m%d")
+      comment: example.clue + Pretty.now.to_s(":%Y%m%d")
     )
 
     %|Added 'require "#{name}"'! Try compile again!|
@@ -96,7 +96,7 @@ rescue err
   env.response.headers["Content-Type"] = "text/plain; charset=utf-8"
   env.response.status_code = 500
   env.response.puts err.to_s
-  Pon.logger.error(err.to_s)
+  Log.error { err.to_s }
 end
 
 private def render_compile_example(id : Int64)

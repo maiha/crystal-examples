@@ -110,7 +110,8 @@ end
 private def to_time_span(d, h, m, s, ms)
   ms = ms.ljust(7,'0')[0,3].to_i
   d,h,m,s = [d,h,m,s].map{|i| "0#{i}".to_i}
-  "Time::Span.new(#{d}, #{h}, #{m}, #{s}, #{ms})"
+  ns = ms*1000
+  "Time::Span.new(days: #{d}, hours: #{h}, minutes: #{m}, seconds: #{s}, nanoseconds: #{ns})"
 end
 
 private def to_time(str, opt)
