@@ -23,7 +23,7 @@ class Job::Compile
   # false: suspended by some reasons
   def run : Bool
     targets.each_with_index do |target, index|
-      logger.debug "compile(%s)" % target.path
+      Log.debug { "compile(%s)" % target.path }
       cache  = Models::CompileCache.from(src: target.src)
       cached = cache.success?
 
@@ -55,12 +55,12 @@ class Job::Compile
       sec = "(cache)" if cached
       msg = "%7s [%s]%3d%%: %s" % [sec, topic, pct, data]
       if cached
-        logger.info msg.colorize(:yellow)
+        Log.info { msg.colorize(:yellow) }
       else
         case status
-        when .pending? ; logger.info msg.colorize(:cyan)
-        when .success? ; logger.info msg.colorize(:green)
-        else           ; logger.warn msg.colorize(:red)
+        when .pending? ; Log.info { msg.colorize(:cyan) }
+        when .success? ; Log.info { msg.colorize(:green) }
+        else           ; Log.warn { msg.colorize(:red) }
         end
       end
     end
@@ -73,22 +73,22 @@ class Job::Compile
     body = Generate.new(src, examples, heuristics).code
     Pretty.write(path, body)
 
-    logger.debug "writes target code: #{path}"
+    Log.debug { "writes target code: #{path}" }
 
     return Target.new(path: path, examples: examples, src: src)
   end
   
   private def run(target : Target, cache)
-    logger.debug "compile(%s)" % target.src
+    Log.debug { "compile(%s)" % target.src }
     if cache.success?
       # set `success` flag and returns true when positive cache hit
       update_status(target) { Data::Status::SUCCESS }
     else
-      logger.debug "  # 2. run compile"
+      Log.debug { "  # 2. run compile" }
       compile(target, cache)
     end
 
-    logger.debug "  # 3. save models to update `compile` status"
+    Log.debug { "  # 3. save models to update `compile` status" }
     Example.adapter.transaction do
       target.examples.each(&.save!)
     end
@@ -107,7 +107,7 @@ class Job::Compile
     timeouted = Channel(Time::Span).new
 
     cmd = "LC_ALL=C #{@crystal} build #{@args} -o /dev/null --no-color %s 2>&1" % target.path
-    logger.debug cmd
+    Log.debug { cmd }
     spawn do
       shell = Shell::Seq.run(cmd)
       finished.send(shell)
@@ -135,7 +135,7 @@ class Job::Compile
       end
     end
 
-    cache.stopped_at  = Time.now
+    cache.stopped_at  = Pretty.now
     cache.save!
 
     if success
@@ -151,24 +151,24 @@ class Job::Compile
     path = target.path   # "array.cr"
     base = path.gsub(/\.cr$/,"") # "array"
 
-    logger.debug "compile failed. trying to find partial successes...(#{path})"
+    Log.debug { "compile failed. trying to find partial successes...(#{path})" }
 
     parser = CompileErrorParser.new(log, File.read(target.path))
     line_number  = parser.line_number?
     success_seqs = parser.success_seqs?
 
-    logger.debug "parsed log. (line=#{line_number.inspect}, seqs=#{success_seqs.inspect})"
+    Log.debug { "parsed log. (line=#{line_number.inspect}, seqs=#{success_seqs.inspect})" }
 
     if seqs = success_seqs
       update_status(target) {|s|
         seqs.includes?(s.seq) ? Data::Status::SUCCESS : Data::Status::FAILURE
       }
 
-      logger.info "[compile] #{path}: compile error at seq=#{parser.error_seq}, mark success to seqs=#{seqs.inspect}"
+      Log.info { "[compile] #{path}: compile error at seq=#{parser.error_seq}, mark success to seqs=#{seqs.inspect}" }
     else
       update_status(target) { Data::Status::FAILURE }
-      logger.info "[compile] #{path}: Compilation failed. And we failed to parse the error message too."
-      logger.debug log.split(/\n/, 6).first(5).map{|i| "  #{i}"}.join("\n")
+      Log.info { "[compile] #{path}: Compilation failed. And we failed to parse the error message too." }
+      Log.debug { log.split(/\n/, 6).first(5).map{|i| "  #{i}"}.join("\n") }
     end
   end
 

@@ -31,7 +31,7 @@ class Job::Test
   # false: suspended by some reasons
   def run : Bool
     targets.each_with_index do |target, index|
-      logger.debug "test(%s)" % target.path
+      Log.debug { "test(%s)" % target.path }
       cache  = Models::TestCache.from(src: target.src)
       cached = cache.success?
 
@@ -53,11 +53,11 @@ class Job::Test
       # set `success` flag and returns true when positive cache hit
       update_status(target) { Data::Status::SUCCESS }
     else
-      logger.debug "  # 2. run spec"
+      Log.debug { "  # 2. run spec" }
       test(target, cache)
     end
 
-    logger.debug "  # 3. save models to update `spec` status"
+    Log.debug { "  # 3. save models to update `spec` status" }
     Example.adapter.transaction do
       target.examples.each(&.save!)
     end
@@ -78,12 +78,12 @@ class Job::Test
       sec = "(cache)" if cached
       msg = "%7s[%s]%3d%%: %s" % [sec, topic, pct, data]
       if cached
-        logger.info msg.colorize(:yellow)
+        Log.info { msg.colorize(:yellow) }
       else
         case status
-        when .pending? ; logger.info msg.colorize(:cyan)
-        when .success? ; logger.info msg.colorize(:green)
-        else           ; logger.warn msg.colorize(:red)
+        when .pending? ; Log.info { msg.colorize(:cyan) }
+        when .success? ; Log.info { msg.colorize(:green) }
+        else           ; Log.warn { msg.colorize(:red) }
         end
       end
     end
@@ -96,7 +96,7 @@ class Job::Test
     body = Generate.new(src, examples, heuristics).spec
     Pretty.write(path, body)
 
-    logger.debug "writes target code: #{path}"
+    Log.debug { "writes target code: #{path}" }
 
     return Target.new(path: path, examples: examples, src: src)
   end
@@ -149,7 +149,7 @@ class Job::Test
       cache.log       = shell.log.to_s
     end
 
-    cache.stopped_at  = Time.now
+    cache.stopped_at  = Pretty.now
     cache.save!
 
     if success
@@ -162,22 +162,22 @@ class Job::Test
   end
 
   private def update_status_by_log(target : Target, log : String)
-    logger.debug "test failed. trying to find partial successes...(#{target.path})"
+    Log.debug { "test failed. trying to find partial successes...(#{target.path})" }
 
     parser = TestPassedParser.new(log)
     success_seqs = parser.success_seqs?
 
-    logger.debug "parsed log. (seqs=#{success_seqs.inspect})"
+    Log.debug { "parsed log. (seqs=#{success_seqs.inspect})" }
 
     if seqs = success_seqs
       update_status(target) {|s|
         seqs.includes?(s.seq) ? Data::Status::SUCCESS : Data::Status::FAILURE
       }
-      logger.info "[test] #{target.src}: Test failed. But some specs passed. seqs=#{seqs.inspect}"
+      Log.info { "[test] #{target.src}: Test failed. But some specs passed. seqs=#{seqs.inspect}" }
     else
       update_status(target) { Data::Status::FAILURE }
-      logger.info "[test] #{target.src}: Test failed. And no examples passed."
-      logger.debug log.split(/\n/, 6).first(5).map{|i| "  #{i}"}.join("\n")
+      Log.info { "[test] #{target.src}: Test failed. And no examples passed." }
+      Log.debug { log.split(/\n/, 6).first(5).map{|i| "  #{i}"}.join("\n") }
     end
   end
 

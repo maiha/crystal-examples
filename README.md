@@ -1,4 +1,4 @@
-# crystal-examples [![Build Status](https://travis-ci.org/maiha/crystal-examples.svg?branch=master)](https://travis-ci.org/maiha/crystal-examples)
+# crystal-examples [![Build Status](https://travis-ci.org/maiha/crystal-examples.svg?branch=main)](https://travis-ci.org/maiha/crystal-examples)
 
 crystal examples checker
 

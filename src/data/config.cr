@@ -34,7 +34,7 @@ class Data::Config < TOML::Config
 
   # [web]
   str  "web/host"
-  int  "web/port"
+  i32  "web/port"
   str  "web/env"
   str  "web/header_title"
   str  "web/logo_icon"
@@ -63,23 +63,10 @@ class Data::Config < TOML::Config
   ######################################################################
   ### cache
 
-  var try_crystal_version : Try(String) = Try(String).try { Shell::Seq.run("crystal --version | grep -i crystal").stdout.chomp }
+  var try_crystal_version : Failure(String) | Success(String) = Try(String).try { Shell::Seq.run("crystal --version | grep -i crystal").stdout.chomp }
 
   ######################################################################
   ### accessor methods
-
-  def build_logger(v = self.toml["logger"]?) : Logger
-    case v
-    when Nil
-      return Logger.new(STDOUT)
-    when Array
-      return CompositeLogger.new(v.map{|i| build_logger(i)})
-    when Hash(String, TOML::Type)
-      return CompositeLogger.new([v.transform_values(&.to_s)])
-    else
-      raise NotFound.new("logger should be one of Array, Hash, Nil. but got #{v.class}");
-    end
-  end    
 
   def to_s(io : IO)
     max = @paths.keys.map(&.size).max

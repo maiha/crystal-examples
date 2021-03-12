@@ -15,7 +15,7 @@ enum Data::Status
   FAILURE = 500
 
   def floor : Status
-    self.class.from_value((value / 100) * 100)
+    self.class.from_value(((value / 100) * 100).to_i)
   end
 
   def ok?

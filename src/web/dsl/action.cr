@@ -44,7 +44,7 @@ end
 macro get_with_cache(name)
   CACHE{{name.gsub(/[\/\.]/, "_").upcase.id}} = render "#{__DIR__}/../views{{name.id}}.ecr"
   get {{name}} do |env|
-    env.response.headers["Content-Type"] = Kemal::Utils.mime_type({{name}})
+    env.response.headers["Content-Type"] = MIME.from_filename({{name}})
     CACHE{{name.gsub(/[\/\.]/, "_").upcase.id}}
   end
 end

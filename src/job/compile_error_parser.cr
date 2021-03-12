@@ -7,9 +7,9 @@ class Job::CompileErrorParser
 
   var error_type       : Error = Error::NOT_FOUND
   var error_value      : String = ""
-  var try_line_number  : Try(Int32) = parse_line_number
-  var try_error_seq    : Try(Int32) = parse_error_seq
-  var try_success_seqs : Try(Seqs)  = parse_success_seqs
+  var try_line_number  : Failure(Int32) | Success(Int32) = parse_line_number
+  var try_error_seq    : Failure(Int32) | Success(Int32) = parse_error_seq
+  var try_success_seqs : Failure(Seqs)  | Success(Seqs)  = parse_success_seqs
   var src_buffer       : String
   
   def initialize(@buf : String, src : String? = nil)
@@ -17,7 +17,7 @@ class Job::CompileErrorParser
     parse
   end
   
-  def parse : Try(Seqs)
+  def parse : Failure(Seqs) | Success(Seqs)
     try_success_seqs
   end
   
@@ -45,7 +45,7 @@ class Job::CompileErrorParser
     try_success_seqs.get
   end
   
-  private def parse_line_number : Try(Int32) # should be "n > 0"
+  private def parse_line_number : Failure(Int32) | Success(Int32) # should be "n > 0"
     Try(Int32).try {
       # I hope the hint should exist within first 10 lines.
       heads = @buf.strip.split(/\n/).first(10)
@@ -84,7 +84,7 @@ class Job::CompileErrorParser
     }
   end
   
-  private def parse_error_seq : Try(Int32)
+  private def parse_error_seq : Failure(Int32) | Success(Int32)
     Try(Int32).try {
       line_number    = try_line_number.get
       max_line_index = [line_number-1, 0].max
@@ -108,7 +108,7 @@ class Job::CompileErrorParser
     }
   end
 
-  private def parse_success_seqs : Try(Seqs)
+  private def parse_success_seqs : Failure(Seqs) | Success(Seqs)
     Try(Seqs).try {
       last_success_seq = [0, try_error_seq.get - 1].max
       (1..last_success_seq)

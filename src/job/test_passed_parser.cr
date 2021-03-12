@@ -1,13 +1,13 @@
 class Job::TestPassedParser
   alias Seqs = Range(Int32, Int32)
 
-  var try_success_seqs : Try(Seqs)  = parse_success_seqs
+  var try_success_seqs : Failure(Seqs) | Success(Seqs)  = parse_success_seqs
   
   def initialize(@buf : String)
     parse
   end
   
-  def parse : Try(Seqs)
+  def parse : Failure(Seqs) | Success(Seqs)
     try_success_seqs
   end
   
@@ -19,7 +19,7 @@ class Job::TestPassedParser
     try_success_seqs.get
   end
   
-  private def parse_success_seqs : Try(Seqs)
+  private def parse_success_seqs : Failure(Seqs) | Success(Seqs)
     Try(Seqs).try {
       seq = 0
       @buf.scan(/#{Generate::TEST_PASSED_SEQ_MARK}(\d+)/) do

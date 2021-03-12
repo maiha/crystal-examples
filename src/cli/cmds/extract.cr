@@ -8,7 +8,7 @@ Cmds.command "extract" do
   ### Variables
 
   var scaned_files    : Array(String) = scan_files
-  var last_flushed_at : Time          = Time.now
+  var last_flushed_at : Time          = Pretty.now
   var flush_interval  : Time::Span    = config.interval? || 3.seconds
   var flush_count                     = 10000
   var dirty_records                   = Array(Pon::Persistence).new
@@ -79,7 +79,7 @@ Cmds.command "extract" do
   private def flush_database!(value : Int32, absolute = false)
     should_flush = absolute
     should_flush ||= (dirty_records.size > flush_count)
-    should_flush ||= (Time.now - last_flushed_at > flush_interval)
+    should_flush ||= (Pretty.now - last_flushed_at > flush_interval)
 
     if should_flush
       if absolute
@@ -100,7 +100,7 @@ Cmds.command "extract" do
 
       dirty_records.clear
 
-      self.last_flushed_at = Time.now
+      self.last_flushed_at = Pretty.now
     end
   end
 end

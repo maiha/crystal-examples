@@ -24,11 +24,11 @@ end
 post "/job/db/reset" do |env|
   seq = Shell::Seq.run("#{PROGRAM_NAME} db reset")
   if seq.success?
-    Pon.logger.info(seq.stdout)
+    Log.info { seq.stdout }
     Models::Source.adapter.reset!
     slang "about/step"
   else
-    Pon.logger.error(seq.log)
+    Log.info { seq.log }
     render_error(env, seq.stdout)
   end
 end
