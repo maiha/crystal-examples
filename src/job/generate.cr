@@ -125,7 +125,7 @@ class Job::Generate
   ######################################################################
   ### prelude
 
-  PRETTY_TIME_CODE = {{ system("cat " + env("PWD") + "/lib/pretty/src/pretty/time.cr").stringify }}
+  PRETTY_TIME_CODE = {{ system("cat " + "lib/pretty/src/pretty/time.cr").stringify }}
 
   def prelude : String
     String.build do |s|

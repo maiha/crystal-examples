@@ -15,9 +15,17 @@ crystal-examples-dev:
 release:
 	$(BUILD) crystal-examples --release
 
+.PHONY : up
+up:
+	docker compose up -d
+
+.PHONY : down
+down:
+	docker compose down -v --remove-orphans
+
 .PHONY : rebuild
 rebuild:
-	docker compose build --no-cache build
+	docker compose build --no-cache
 
 native/crystal-examples-dev:
 	shards build --link-flags "-static" crystal-examples-dev

@@ -3,8 +3,9 @@ version: '2'
 services:
   build:
     build: .
-    command: shards build --link-flags "-static"
+    command: tail -f /dev/null
     user: "${UID}:${GID}"
     volumes:
       - .:/v
     working_dir: /v
+    tty: true

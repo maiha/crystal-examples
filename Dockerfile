@@ -1,6 +1,11 @@
-FROM crystallang/crystal:1.1.1
+FROM crystallang/crystal:1.6.0-alpine
 
-RUN apt-get update -qq && apt-get install -y --no-install-recommends libsqlite3-dev
+
+RUN apk update && apk add --no-cache \
+    sqlite-static \
+    && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /var/cache/apk/*
 
 CMD ["crystal", "--version"]
 

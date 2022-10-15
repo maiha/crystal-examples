@@ -35,6 +35,9 @@ dependencies:
   slang:
     github: jeromegn/slang
 
+  kilt:
+    github: jeromegn/kilt
+
   crustache:
     github: MakeNowJust/crustache
     
