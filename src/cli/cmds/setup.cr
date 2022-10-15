@@ -20,7 +20,7 @@ Cmds.command "setup" do
     "Makefile"           => Data::Bundled::MAKEFILE,
     ".env"               => Data::Bundled::DOT_ENV,
     "config.toml"        => Data::Bundled::CONFIG_TOML,
-    "docker-compose.yml" => Data::Bundled::DOCKER_COMPOSE,
+    "compose.yaml"       => Data::Bundled::COMPOSE,
   }
 
   enum Result

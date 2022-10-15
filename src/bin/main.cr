@@ -19,12 +19,13 @@ class Main < Cmds::Cli
   end
 
   def run(args)
+    debug = !!args.delete("-d")
     if args.delete("--version")
       puts Shard.git_version
+      puts "docker: %s" % Data::SystemInfo.docker? if debug
       exit(0)
     end
 
-    debug = !!args.delete("-d")
 #    setup_logs(debug)
 
     self.config = Data::Config.load?(nil) || Data::Config::DEFAULT

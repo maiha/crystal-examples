@@ -10,7 +10,7 @@ crystal examples checker
 
 ## Requirements
 - `crystal-examples` : linux x86_64 static binary is [available](https://github.com/maiha/crystal-examples/releases)
-- `docker-compose`
+- `docker compose`
 
 ## Setup
 
@@ -22,7 +22,7 @@ Setting up working directory in ./
   ok         /tmp/work
   create     Makefile
   create     config.toml
-  create     docker-compose.yml
+  create     compose.yaml
   create     examples.db
   create     crystal-examples # 0.3.1 [51d73b1] (2019-03-20)
   not found  crystal/src
@@ -188,7 +188,7 @@ This is preventing the use within CI and automation.
 
 ## Development
 
-`docker-compose` is needed in development too.
+`docker compose` is needed in development too.
 
 ```console
 $ make

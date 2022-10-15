@@ -5,7 +5,7 @@ export LC_ALL=C
 export UID = $(shell id -u)
 export GID = $(shell id -g)
 
-BUILD := docker-compose run --rm build shards build --link-flags "-static"
+BUILD := docker compose run --rm build shards build --link-flags "-static"
 
 .PHONY : crystal-examples-dev
 crystal-examples-dev:
@@ -17,7 +17,7 @@ release:
 
 .PHONY : rebuild
 rebuild:
-	docker-compose build --no-cache build
+	docker compose build --no-cache build
 
 native/crystal-examples-dev:
 	shards build --link-flags "-static" crystal-examples-dev
@@ -34,7 +34,7 @@ ci: crystal-examples-dev spec
 
 .PHONY : spec
 spec:
-	docker-compose run --rm build crystal spec -v --fail-fast
+	docker compose run --rm build crystal spec -v --fail-fast
 
 
 .PHONY : check_version_mismatch
