@@ -33,6 +33,9 @@ html
     script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/#{version}/highlight.min.js"
     script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/crystal.min.js"
 
+    / font
+    link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet"
+
     / application
     script src="/public/main.js"
     link rel="stylesheet" href="/public/main.css"
