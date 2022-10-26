@@ -55,12 +55,13 @@ class Job::Compile
       sec = "(cache)" if cached
       msg = "%7s [%s]%3d%%: %s" % [sec, topic, pct, data]
       if cached
-        Log.info { msg.colorize(:yellow) }
+        Log.info { msg.colorize(:cyan) }
       else
         case status
-        when .pending? ; Log.info { msg.colorize(:cyan) }
         when .success? ; Log.info { msg.colorize(:green) }
-        else           ; Log.warn { msg.colorize(:red) }
+        when .skip?    ; Log.info { msg.colorize(:cyan) }
+        when .warn?    ; Log.warn { msg.colorize(:yellow) }
+        else           ; Log.error { msg.colorize(:red) }
         end
       end
     end
@@ -167,7 +168,7 @@ class Job::Compile
       Log.info { "[compile] #{path}: compile error at seq=#{parser.error_seq}, mark success to seqs=#{seqs.inspect}" }
     else
       update_status(target) { Data::Status::FAILURE }
-      Log.info { "[compile] #{path}: Compilation failed. And we failed to parse the error message too." }
+      Log.error { "[compile] #{path}: Compilation failed. And we failed to parse the error message too." }
       Log.debug { log.split(/\n/, 6).first(5).map{|i| "  #{i}"}.join("\n") }
     end
   end

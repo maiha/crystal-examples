@@ -83,7 +83,8 @@ class Job::Test
         case status
         when .pending? ; Log.info { msg.colorize(:cyan) }
         when .success? ; Log.info { msg.colorize(:green) }
-        else           ; Log.warn { msg.colorize(:red) }
+        when .warn?    ; Log.warn { msg.colorize(:yellow) }
+        else           ; Log.error { msg.colorize(:red) }
         end
       end
     end

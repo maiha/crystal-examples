@@ -21,7 +21,17 @@ enum Data::Status
   def ok?
     (UNKNOWN < self) && (self < ERROR)
   end
+
+  # PENDING is a temporary condition that needs to be resolved as 3xx.
+  def warn?
+    PENDING == self
+  end
   
+  # It can be skipped once resolved as 3xx.
+  def skip?
+    (PENDING < self) && (self < ERROR)
+  end
+
   def err?
     ERROR <= self
   end
