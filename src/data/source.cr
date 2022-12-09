@@ -9,12 +9,12 @@ class Data::Source
 end
 
 class Data::Source
-  def self.parse(str)
-    SourceParser.parse(str)
+  def self.parse(path)
+    SourceParser.parse(path)
   end
 
   def self.relative(path : String)
-    path.sub(/^.*\/src\//, "")
+    path.sub(/^(.*\/)?src\//, "")
   end
 
   def self.code(code : String)

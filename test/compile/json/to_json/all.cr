@@ -1,7 +1,7 @@
 require "json"
-# src/json/to_json.cr:4 (001)
+# json/to_json.cr:4 (001)
 # EXAMPLE_SEQ=1
-# src/json/to_json.cr:4
+# json/to_json.cr:4
 # require "json"
 
 class TimestampArray
@@ -14,10 +14,10 @@ end
 timestamp = TimestampArray.from_json(%({"dates":[1459859781,1567628762]}))
 timestamp.dates   # => [2016-04-05 12:36:21 UTC, 2019-09-04 20:26:02 UTC]
 timestamp.to_json # => %({"dates":[1459859781,1567628762]})
-# src/json/to_json.cr:22 (002)
+# json/to_json.cr:22 (002)
 # EXAMPLE_SEQ=2
 module To_json22
-# src/json/to_json.cr:22
+# json/to_json.cr:22
 # require "json"
 
 class TimestampArray

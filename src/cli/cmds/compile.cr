@@ -6,9 +6,8 @@ Cmds.command "compile" do
   
   usage "all   # setup and run"
   usage "setup # prepare compilation"
+  usage "gen   # create files to compile"
   usage "run   # compile all examples"
-#  usage "full  # re-compile all examples"
-#  usage "clean # clean results"
 
   ######################################################################
   ### Variables
@@ -27,6 +26,12 @@ Cmds.command "compile" do
     if !shell.success?
       raise shell.log
     end
+  end
+  
+  task "gen" do
+    crystal = config.crystal_bin
+    compile = Compile.new(wiz.examples, crystal: crystal, args: config.crystal_testing_args)
+    # files are generated when Compile.new
   end
   
   task "run" do

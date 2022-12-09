@@ -3,7 +3,7 @@
 set -eu
 source test_helper.sh
 
-describe 'compile'
+describe 'spec'
 it "(setup config.toml)"
   @run  cp ../../bundled/config.toml .
   @run  sed -i -e 's/^bin\s*=.*$/bin = "crystal"/' config.toml
@@ -11,9 +11,9 @@ it "(setup config.toml)"
 
 it "gen"
   @run  ln -s ../../test/src .
-  @run  ./crystal-examples compile setup
-  @run  ./crystal-examples compile gen
+  @run  ./crystal-examples test setup
+  @run  ./crystal-examples test gen
 
 it "(check generated files)"
-        diff -cr ../../test/compile tmp
-  @run  diff -cr ../../test/compile tmp
+        diff -cr ../../test/test tmp
+  @run  diff -cr ../../test/test tmp

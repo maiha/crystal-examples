@@ -17,6 +17,7 @@ class Job::Test
     examples.sort_by(&.src).group_by(&.src).each do |src, ary|
       targets << generates_target(src: src, examples: ary.sort_by(&.seq))
     end
+    generates_helper
 
     # Resolve the absolute path of `@crystal` first, because the binary
     # will be called from some other dir.
@@ -102,6 +103,14 @@ class Job::Test
     return Target.new(path: path, examples: examples, src: src)
   end
 
+  private def generates_helper
+    path = File.join(tmp_dir, "helper.cr")
+    body = Data::Bundled::HELPER_CR
+    Pretty.write(path, body)
+
+    Log.debug { "writes helper code: #{path}" }
+  end
+  
   protected def pending?(sha1 : Data::SHA1) : Models::Heuristic?
     heuristics.skip_test[sha1]? || heuristics.skip_compile[sha1]?
   end
