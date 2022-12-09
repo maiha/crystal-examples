@@ -16,18 +16,54 @@ class Job::Generate
         buf.puts %|require "%s"| % heuristic.by
       end
 
+      # Gather required library names, then put them into head of the file.
+      required_names = Array(String).new
+      @examples.each do |example|
+        required_names.concat(example.required_names)
+      end
+      required_names.uniq.each do |name|
+        buf.puts %|require "%s"| % name
+      end
+
+      # Stack context as module to avoid conflicated class/module/enum.
+      defined_constants    = Set(String).new
+      stacked_module_names = Array(String).new
+      
       @examples.each do |example|
         buf.puts "# %s (%03d)" % [example.clue, example.seq]
         # embeds mark of seq number as comment
         buf.puts (SEQ_MARK + example.seq.to_s)
 
         code = build_compile_code(example)
+
         if heuristic = @heuristics.skip_compile[example.sha1]?
           buf.puts "# #{heuristic.to_s}"
           buf.puts code.gsub(/^/m, "# ")
         else
+
+          # If re-assigned previous constants, modulize this code block
+          constant_conflicted = false
+          example.defined_constant_names.each do |name|
+            if defined_constants.includes?(name)
+              constant_conflicted = true
+            end
+            defined_constants << name
+          end
+
+          if constant_conflicted
+            # example.src  # => "src/array.cr"
+            # example.line # => 81
+            module_name = "#{example.class_name}#{example.line}" # "Array81"
+            stacked_module_names << module_name
+            buf.puts "module #{module_name}"
+          end
+
           buf.puts code
         end
+      end
+
+      stacked_module_names.each do |module_name|
+        buf.puts "end # #{module_name}"
       end
     end
   end
@@ -35,10 +71,11 @@ class Job::Generate
   private def build_compile_code(example : Models::Example)
     String.build do |s|
       s.puts "# %s\n" % example.clue
-#      s << %|require "#{prelude()}"\n| if prelude && prelude?
       example.codes.each do |line|
         case line
         when /#.*?error/i
+          s.puts "# #{line}"
+        when /^require "/
           s.puts "# #{line}"
         else
           s.puts line

@@ -4,7 +4,7 @@ class Models::Example < Pon::Model
   adapter sqlite
   table_name examples
 
-  field src      : String  # => "array.cr"
+  field src      : String  # => "src/array.cr"
   field seq      : Int32   # => 2 (nth example in the src)
   field line     : Int32   # => 21 (line number in the src)
   field type     : String  # => "crystal", "json" (comment block type)
@@ -29,6 +29,10 @@ class Models::Example < Pon::Model
   ######################################################################
   ### Accessor
 
+  def class_name : String
+    File.basename(src, ".cr").capitalize
+  end
+
   def crystal?
     @type.to_s == "" || @type.to_s == "crystal"
   end
@@ -41,10 +45,34 @@ class Models::Example < Pon::Model
       nil
     end
   end
-  
+
+  def required_names : Array(String)
+    names = Array(String).new
+
+    codes.each do |line|
+      case line
+      when /^\s*require "(.*?)"/
+        names << $1
+      end
+    end
+
+    return names.uniq
+  end
+
   def codes : Array(String)
     buf = code.to_s.strip
     buf.empty? ? Array(String).new : buf.split(/\n/)
+  end
+
+  def defined_constant_names : Array(String)
+    names = Array(String).new
+    codes.each do |code|
+      case code
+      when /^\s*(alias|class|enum|module|record|struct)\s+([A-Z][a-zA-Z0-9_]*)(\s|$)/
+        names << $2
+      end
+    end
+    return names
   end
 
   def delete_compile_heuristic!

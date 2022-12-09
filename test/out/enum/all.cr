@@ -53,6 +53,7 @@ when .blue?
 end
 # src/enum.cr:94 (009)
 # EXAMPLE_SEQ=9
+module Enum94
 # src/enum.cr:94
 enum Color : UInt8
   Red
@@ -63,6 +64,7 @@ end
 Color::Red.value # : UInt8
 # src/enum.cr:113 (010)
 # EXAMPLE_SEQ=10
+module Enum113
 # src/enum.cr:113
 enum Color
   Red
@@ -81,3 +83,5 @@ IOMode::None.to_s                   # => "None"
 (IOMode::Read | IOMode::Write).to_s # => "Read | Write"
 
 Color.new(10).to_s # => "10"
+end # Enum94
+end # Enum113

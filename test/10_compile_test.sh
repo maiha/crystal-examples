@@ -15,8 +15,9 @@ it "setup"
 
 it "run"
   @run  ln -s ../../test/out .
-  @run  ./crystal-examples compile run
+  ./crystal-examples compile run
 
 it "(check generated files)"
   ln -s tmp/src gen
+  diff -cr out gen
   @run  diff -cr out gen
