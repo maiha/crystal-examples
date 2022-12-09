@@ -36,6 +36,10 @@ ci: crystal-examples-dev spec
 spec:
 	docker compose run --rm build crystal spec -v --fail-fast
 
+.PHONY : test
+test: 
+	[ -f bin/crystal-examples-dev ] || make
+	@./test/run
 
 .PHONY : check_version_mismatch
 check_version_mismatch: shard.yml README.md

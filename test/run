@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -eu
+root_dir=$(pwd)
+test_dir=$(realpath $(dirname ${BASH_SOURCE:-$0}))
+
+for test in $(find $test_dir -maxdepth 1 -name '*_test.sh' | sort); do
+  echo "----------------------------------------------------------------------"
+  echo "-- `basename $test`"
+  echo "----------------------------------------------------------------------"
+
+  # clean workspace
+  cd "${root_dir}"
+  rm -rf   tmp/test
+  mkdir -p tmp/test
+
+  cd tmp/test
+  ln -s $test_dir/test_helper.sh
+  ln -s $root_dir/bin/crystal-examples-dev crystal-examples
+
+  $test || exit 255
+done
