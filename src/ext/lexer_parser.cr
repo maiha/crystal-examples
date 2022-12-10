@@ -52,8 +52,29 @@ class CommentSpec::LexerParser
       # NOTE: check with `class.to_s` for the case of private class like `Indexable::ItemIterator`
       build ExpectClass, {code: code, eq: $1}
 
-    when /^=>\s+(\d{0,4})\.?(\d{2}):(\d{2}):(\d{2})\.?(\d{0,7})$/
-      build ExpectEqual, {code: code, eq: to_time_span($1, $2, $3, $4, $5)}
+    # 10.00:00:00.000010000
+    when /^=>\s+(\d+)\.(\d{2}):(\d{2}):(\d{2})\.(\d{7,9})$/
+      build ExpectEqual, {code: code, eq: to_time_span(d: $1, h: $2, m: $3, s: $4, ns: $5)}
+
+    # 10.00:00:00.000010
+    when /^=>\s+(\d+)\.(\d{2}):(\d{2}):(\d{2})\.(\d{1,6})$/
+      build ExpectEqual, {code: code, eq: to_time_span(d: $1, h: $2, m: $3, s: $4, ms: $5)}
+
+    # 00:00:00.000010000
+    when /^=>\s+(\d{2}):(\d{2}):(\d{2})\.(\d{7,9})$/
+      build ExpectEqual, {code: code, eq: to_time_span(d: 0, h: $1, m: $2, s: $3, ns: $4)}
+
+    # 00:00:00.000010
+    when /^=>\s+(\d{2}):(\d{2}):(\d{2})\.(\d{1,6})$/
+      build ExpectEqual, {code: code, eq: to_time_span(d: 0, h: $1, m: $2, s: $3, ms: $4)}
+
+    # 10.00:00:00
+    when /^=>\s+(\d+)\.(\d{2}):(\d{2}):(\d{2})$/
+      build ExpectEqual, {code: code, eq: to_time_span(d: $1, h: $2, m: $3, s: $4)}
+
+    # 00:00:00
+    when /^=>\s+(\d{2}):(\d{2}):(\d{2})$/
+      build ExpectEqual, {code: code, eq: to_time_span(d: 0, h: $1, m: $2, s: $3)}
 
     when /^=>\s+(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})(.*?)$/
       build ExpectEqual, {code: code, eq: to_time($1, $2)}
@@ -107,11 +128,16 @@ class CommentSpec::LexerParser
   end
 end
 
-private def to_time_span(d, h, m, s, ms)
-  ms = ms.ljust(7,'0')[0,3].to_i
+private def to_time_span(d, h, m, s, ms = nil, ns = nil) : String
   d,h,m,s = [d,h,m,s].map{|i| "0#{i}".to_i}
-  ns = ms*1000
-  "Time::Span.new(days: #{d}, hours: #{h}, minutes: #{m}, seconds: #{s}, nanoseconds: #{ns})"
+  if ns
+    ns = ns.to_s.sub(/^0+/,"").to_i
+  elsif ms
+    ns = ms.ljust(7,'0')[0,3].to_i * 1000
+  else
+    return "Time::Span.new(days: #{d}, hours: #{h}, minutes: #{m}, seconds: #{s})"
+  end
+  return "Time::Span.new(days: #{d}, hours: #{h}, minutes: #{m}, seconds: #{s}, nanoseconds: #{ns})"
 end
 
 private def to_time(str, opt)

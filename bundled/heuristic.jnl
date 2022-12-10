@@ -298,7 +298,6 @@ test 9116843c031ca2c066e4015b7bc4c4220b1423fa by:pseudo comment:colorize.cr:59:2
 test 91d13e25ec8aac36bea5153234a7fc9d4d1f031f by:pseudo comment:file.cr:306:20190318
 test 922f6b79d09822f3b70bac1a74248943f3214b1a by:pseudo comment:socket/tcp_socket.cr:6:20190318
 test 9369341e25cd67c66cd19ed1d1bc413da944396b by:pseudo comment:file_utils.cr:234:20190318
-test 94fe1452bad810f86eaa8bd74a5e39a07641f15b by:pending comment:time/span.cr:7:20200429
 test 9521025ec8b8d48b4f6c3cd8e7b71ac2d27f7b5d by:random comment:random.cr:248:20190318
 test 955bd0a6c2b51e63a933c23126d3589ebdc4a0d9 by:random comment:random.cr:107:20190318
 test 96ad891be52fd06dcd8c14ce8fde97bf6493bfc5 by:random comment:file.cr:35:20180101
