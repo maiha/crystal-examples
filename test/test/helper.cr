@@ -23,14 +23,14 @@ November December)
     when /\A(\d{4}-\d{2}-\d{2})\Z/
       ::Time.parse(value, "%F", location)
     when /\A(?<year>\d{4})[-: \/]?(?<month>\d{2})[-: \/]?(?<day>\d{2})[-: ]?(?<hour>\d{2})[-: ]?(?<min>\d{2})[-: ]?(?<sec>\d{2})?\Z/
-      parse($~["year"].to_i, $~["month"].to_i, $~["day"].to_i, $~["hour"].to_i, $~["min"].to_i,  $~["sec"]?.try(&.to_i) || 0, location: location)
+      ::Time.local($~["year"].to_i, $~["month"].to_i, $~["day"].to_i, $~["hour"].to_i, $~["min"].to_i,  $~["sec"]?.try(&.to_i) || 0, location: location)
 
     when /\A([A-Za-z]{3}\s+)?(?<month>[A-Z][a-z]{2,9})\s+(?<day>\d{2})\s+(?<hour>\d{2})[-: ]+(?<min>\d{2})[-: ]+(?<sec>\d{2})(\s+[+-]\d{4})?\s+(?<year>\d{4})\b/
       year = $~["year"].to_i
       v = $~["month"]
       i = MONTH_NAMES.index(v) || SHORT_MONTH_NAMES.index(v) || raise ArgumentError.new("#{v.inspect} seems MONTH, but our dictionary doesn't support it.")
       month = i + 1
-      parse(year, month, $~["day"].to_i, $~["hour"].to_i, $~["min"].to_i,  $~["sec"].to_i, location: location)
+      ::Time.local(year, month, $~["day"].to_i, $~["hour"].to_i, $~["min"].to_i,  $~["sec"].to_i, location: location)
     else
       raise "BUG: __time__ cannot parse: #{value.inspect}"
     end

@@ -115,7 +115,7 @@ private def to_time_span(d, h, m, s, ms)
 end
 
 private def to_time(str, opt)
-  %(::Pretty::Time.parse("%s%s")) % [str, opt]
+  %(__time__("%s%s")) % [str, opt]
 end
 
 private def escape_double_quotes(str)
