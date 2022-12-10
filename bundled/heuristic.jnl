@@ -233,14 +233,12 @@ test 468885a1c98e42af86531842dbdeb245de7c9ca6 by:pseudo comment:colorize.cr:51:2
 test 473f734fd54026cb53d4b55af15caba216e8abe5 by:pseudo comment:kernel.cr:89:20190318
 test 4868b76deab4e819770a71fcbfdd4a19a9342e6a by:pending comment:yaml/serialization.cr:67:20190320
 test 4a0ae2ec119ad1f21e78abbee4a3d4e9320a4bd7 by:pending comment:time/span.cr:32:20210312
-test 4a80820819bd57fe6f536e9313d4a968656c1041 by:pending comment:uuid/yaml.cr:9:20210919
 test 4af88f0e0629f33a29396516e9d64a0b24de0e5d by:pseudo comment:time.cr:199:20190404
 test 4b39827ee35ccad8d77be19765f2caf10a03aacd by:pending comment:json/to_json.cr:185:20200429
 test 4bd6c6fa4b30e85a2e6c540b69c1f6112144b74e by:pending comment:time/span.cr:7:20190318
 test 4c2ecc873d4f4e97f57937ed7d36966be07a6a44 by:pseudo comment:file_utils.cr:310:20190319
 test 5284918c70876ea307f40c198d0ccac8c0b1d189 by:pseudo comment:io/console.cr:10:20190318
 test 52d87d0f781e52a5317bbe8d9562aa5cb7af456e by:random comment:file.cr:23:20180101
-test 53d5f3e0892dd941437afd9b808ec52f6d8eb6df by:random comment:json/to_json.cr:185:20201011
 test 5502ddb884bb95b6b839798f50f65ab03b54457c by:pseudo comment:http/server.cr:49:20190318
 test 58c78326ce29856018bd8a56438363bfafb6280d by:pending comment:yaml/serialization.cr:344:20200429
 test 5a121d8396cd90b7fd27ef65ef01b9a0465ed399 by:pending comment:time.cr:71:20210312
@@ -349,7 +347,6 @@ test cd80a22e5ed1af6d60a2097e9438c83fe0f2927e by:pseudo comment:http/client.cr:6
 test d181e060311ffe8410896d393640cc678c552948 by:pending comment:uri.cr:226:20200429
 test d3da269021595eebf2d06a55936b22479eb124d4 by:pseudo comment:socket/udp_socket.cr:20:20190318
 test d4468beb0d3d0b0c62df4a95f3cc56e25f405885 by:pseudo comment:file_utils.cr:216:20190318
-test d590f77e6d08f59940b12c0509050470735684f9 by:pending comment:uuid/json.cr:9:20201106
 test d6cfd0521f60c05665cce6c2c1d2e42e7902eafd by:pseudo comment:socket.cr:202:20190318
 test d784b9621188c14a11739f053838e0bec3dc992b by:pending comment:regex.cr:503:20200429
 test d7a3d94cd58ca2e8c82ddf34e8444ffefaac59f2 by:random comment:primitives.cr:41:20190318

@@ -52,6 +52,10 @@ class CommentSpec::LexerParser
       # NOTE: check with `class.to_s` for the case of private class like `Indexable::ItemIterator`
       build ExpectClass, {code: code, eq: $1}
 
+    # UUID(ba714f86-cac6-42c7-8956-bcf5105e1b81)
+    when /^=>\s+UUID\((.*)?\)$/
+      build ExpectEqual, {code: code, eq: %Q|UUID.new("#{$1}")|}
+
     # 10.00:00:00.000010000
     when /^=>\s+(\d+)\.(\d{2}):(\d{2}):(\d{2})\.(\d{7,9})$/
       build ExpectEqual, {code: code, eq: to_time_span(d: $1, h: $2, m: $3, s: $4, ns: $5)}
@@ -76,6 +80,7 @@ class CommentSpec::LexerParser
     when /^=>\s+(\d{2}):(\d{2}):(\d{2})$/
       build ExpectEqual, {code: code, eq: to_time_span(d: 0, h: $1, m: $2, s: $3)}
 
+    # 2016-04-05 12:36:21 UTC
     when /^=>\s+(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})(.*?)$/
       build ExpectEqual, {code: code, eq: to_time($1, $2)}
 
@@ -117,7 +122,14 @@ class CommentSpec::LexerParser
 
     when /^=>\s*(.*?)$/
       # FoundObject
-      build ExpectEqual, {code: code, eq: $1}
+      buffer = $1
+
+      # [2016-04-05 12:36:21 UTC, 2019-09-04 20:26:02 UTC]
+      buffer = buffer.gsub(/(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})(\s[a-z]+(\/[a-z]+)?)?/i) {
+        to_time($1, $2)
+      }
+      
+      build ExpectEqual, {code: code, eq: buffer}
     end
     
     build Nop
