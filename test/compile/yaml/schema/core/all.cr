@@ -1,4 +1,4 @@
-# [heuristic:169] require yaml/schema/core.cr by:yaml/schema/core comment:yaml/schema/core.cr:1:20180101
+# [heuristic:168] require yaml/schema/core.cr by:yaml/schema/core comment:yaml/schema/core.cr:1:20180101
 require "yaml/schema/core"
 require "yaml"
 # yaml/schema/core.cr:1 (001)

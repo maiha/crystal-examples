@@ -30,7 +30,7 @@ class Models::Example < Pon::Model
   ### Accessor
 
   def class_name : String
-    File.basename(src, ".cr").capitalize
+    Pretty.classify(File.basename(src, ".cr"))
   end
 
   def crystal?

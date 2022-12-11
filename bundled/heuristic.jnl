@@ -79,7 +79,6 @@ compile 9116843c031ca2c066e4015b7bc4c4220b1423fa by:pseudo comment:colorize.cr:5
 compile 9140d31bc9c6b8be7a0217c6525e45e2169c2a5a by:macro comment:object.cr:54:20180101
 compile 951a390e76e4dddfe476969c3ba6e4a6a70eadc0 by:pseudo comment:errno.cr:210:20190320
 compile 96347f1294cfcc8793826c128fd62bf907df61b2 by:macro comment:http/client.cr:346:20190320
-compile 964aa24f931cd1f41723f7dc90941dcca64458fb by:wrong comment:json/serialization.cr:68:20190320
 compile 96661d2cbed8e83fc104d1b59c25cb3e50d82e7e by:macro comment:object.cr:17:20180101
 compile 9c0c06f67807182804ace494eb4c3855e6cae9a1 by:pseudo comment:ecr/macros.cr:10:20190320
 compile 9c0d07cbb23ae37d9fe3d079f47011e755731f2d by:general comment:log/format.cr:192:20201010

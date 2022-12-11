@@ -20,7 +20,7 @@ puts "TEST_PASSED_SEQ=1" # :nocode:
 
 # json/to_json.cr:22 (002)
 # EXAMPLE_SEQ=2
-module To_json22
+module M__ToJson22
 # require "json"
 
 class TimestampArray
@@ -35,4 +35,4 @@ timestamp = TimestampArray.from_json(%({"dates":["Apr 5, 2016","Sep 4, 2019"]}))
 ( timestamp.to_json ).should eq( %({"dates":["Apr 5, 2016","Sep 4, 2019"]}) )
 puts "TEST_PASSED_SEQ=2" # :nocode:
 
-end # To_json22
+end # M__ToJson22

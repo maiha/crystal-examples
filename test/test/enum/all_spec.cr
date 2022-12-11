@@ -64,7 +64,7 @@ puts "TEST_PASSED_SEQ=8" # :nocode:
 
 # enum.cr:94 (009)
 # EXAMPLE_SEQ=9
-module Enum94
+module M__Enum94
 enum Color : UInt8
   Red
   Green
@@ -76,7 +76,7 @@ puts "TEST_PASSED_SEQ=9" # :nocode:
 
 # enum.cr:113 (010)
 # EXAMPLE_SEQ=10
-module Enum113
+module M__Enum113
 enum Color
   Red
   Green
@@ -97,5 +97,5 @@ puts "TEST_PASSED_SEQ=10" # :nocode:
 ( Color.new(10).to_s ).to_s.should eq( "10" )
 puts "TEST_PASSED_SEQ=11" # :nocode:
 
-end # Enum94
-end # Enum113
+end # M__Enum94
+end # M__Enum113

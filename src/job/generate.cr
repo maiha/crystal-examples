@@ -52,9 +52,10 @@ class Job::Generate
           end
 
           if constant_conflicted
-            # example.src  # => "array.cr"
+            # example.src  # => "to_json.cr"
             # example.line # => 81
-            module_name = "#{example.class_name}#{example.line}" # "Array81"
+            # EXPECTED     # => "M__ToJson81"
+            module_name = "M__#{example.class_name}#{example.line}"
             stacked_module_names << module_name
             s.puts "module #{module_name}"
           end
@@ -139,7 +140,8 @@ class Job::Generate
           if constant_conflicted
             # example.src  # => "array.cr"
             # example.line # => 81
-            module_name = "#{example.class_name}#{example.line}" # "Array81"
+            # EXPECTED     # => "M__Array81"
+            module_name = "M__#{example.class_name}#{example.line}"
             stacked_module_names << module_name
             s.puts "module #{module_name}"
           end
