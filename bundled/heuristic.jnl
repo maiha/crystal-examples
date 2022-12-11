@@ -216,7 +216,6 @@ test 35d8d258026e4eb193396fafc327e2661d65b0ea by:random comment:benchmark.cr:133
 test 382aef43f7196aa56a85bab699bee6df603c3aa5 by:pending comment:openssl/ssl/context.cr:99:20190320
 test 3a31f791f93c2126b9d6150dd2c627fa26b56a64 by:random comment:static_array.cr:179:20190318
 test 3c4357967849d7e1dae1a08396b37f46eaa15af4 by:random comment:http/client.cr:523:20190318
-test 3cb77567db7897ecc6709a77c03cb43a70ab5dd1 by:pseudo comment:big/big_decimal.cr:201:20190404
 test 3d56c66f19fd322f6561c576a2d73954314c4b4a by:pseudo comment:kernel.cr:50:20190318
 test 3d76990d559e7ba81cc0fb5966098817283f6e6f by:pending comment:log/format.cr:94:20201106
 test 3e3c2666c1cff159add503ec5b9e4aa417b8e044 by:pseudo comment:socket.cr:306:20190318
@@ -353,7 +352,6 @@ test d7fd7a0f40ecffb7e32b6ed9666d4a4b66759fb3 by:pending comment:named_tuple.cr:
 test dab7d82a1bf0c560bf3a97721a378a39f25b41a1 by:random comment:string/grapheme.cr:10:20220325
 test dad8d3d46a1cc1eed42d824e86c365b0cbfdb2ec by:pseudo comment:http/web_socket.cr:122:20201011
 test dd8b29c2fddc8cda567b62622253e655f0fe1d2f by:pending comment:time/span.cr:74:20200429
-test decece390ff1517e8e952713a9d2663e5c4fd876 by:pseudo comment:complex.cr:366:20210312
 test defe69c241a21b02aeafc3ffb5338f8d0f7dc688 by:random comment:path.cr:17:20190402
 test df2792327f5f415f4183764382d38e57a960356a by:pseudo comment:socket/server.cr:4:20180101
 test e0470de0d21a96e174a704939385a62bb9f3cfa8 by:pseudo comment:json/from_json.cr:75:20220325

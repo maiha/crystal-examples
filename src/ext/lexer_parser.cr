@@ -84,6 +84,10 @@ class CommentSpec::LexerParser
     when /^=>\s+(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})(.*?)$/
       build ExpectEqual, {code: code, eq: to_time($1, $2)}
 
+    # NaN
+    when /^=>\s+-?NaN\s*$/
+      build ExpectNaN, {code: code}
+      
     when /^=>\s*[^#].*?#/
       # FoundArrayInstance
       # "value # => [9, #<Indexable::ItemIterator>]"
