@@ -24,6 +24,7 @@ div class="alert alert-#{style} #{eid}" role="alert"
     - skip = heuristics.skip_compile[s.sha1]?
     - if skip
       span = " pending (reason: #{skip.by})"
+    span class="float-right" = "heuristic id=#{s.sha1.inspect}"
     .crystal-code
       == "<pre><code class=#{lang}>#{s.code}</code></pre>"
     - if s.compiled.failure?
