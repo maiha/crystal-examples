@@ -17,14 +17,17 @@
 
 div class="alert #{wiz.alert4}" role="alert"
   h5 class="alert-heading"
+    // Compiled [100%] 1981 examples
     i class="fas fa-database"
     span class=css = "Compiled [#{pct}%]"
     span = "#{cnt} examples"
   .alert-body
     table
+      // compile  1863 success 3 general 43 pseudo 71 macro 1 wrong  94.0%(1863/1981)
       tr
-        td = "compile "
+        td.pr-2 = "compile"
         td
+          - ok = nil
           - if lights = try.get?
             - grouped = lights.group_by(&.compiled)
             - grouped.keys.sort.each do |status|
@@ -34,6 +37,9 @@ div class="alert #{wiz.alert4}" role="alert"
               - style = "badge badge-#{status.floor.style} #{focus}"
               a.pjax href="/compiled/_/#{value}" title=value
                 span class=style = "#{count} #{value}"
+              - ok = count if status.success?
+          - ok ||= 0
+        td.pl-2 = "%.1f%%(%d/%d)" % [100.0*ok/cnt, ok, cnt]
 
 .m-2
 div

@@ -16,15 +16,18 @@
 .m-2
 
 div class="alert #{wiz.alert5}" role="alert"
-  h5 class="alert-heading"
+  h5 class="alert-heading"    
+    // Tested [100%] 1981 specs
     i class="fas fa-database"
     span class=css = "Tested [#{pct}%]"
     span = "#{cnt} specs"
   .alert-body
     table
+      // test  1687 success 4 pending 4 general 162 pseudo 71 macro 8 wrong 45 random  85.2%(1687/1981)
       tr
-        td = "test "
+        td.pr-2 = "test"
         td
+          - ok = nil
           - if lights = try.get?
             - grouped = lights.group_by(&.tested)
             - grouped.keys.sort.each do |status|
@@ -34,6 +37,9 @@ div class="alert #{wiz.alert5}" role="alert"
               - style = "badge badge-#{status.floor.style} #{focus}"
               a.pjax href="/tested/_/#{value}" title=value
                 span class=style = "#{count} #{value}"
+              - ok = count if status.success?
+          - ok ||= 0
+        td.pl-2 = "%.1f%%(%d/%d)" % [100.0*ok/cnt, ok, cnt]
 
 .m-2
 div
