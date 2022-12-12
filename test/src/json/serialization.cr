@@ -1,6 +1,17 @@
   # ```
   # require "json"
   #
+  # class A
+  #   include JSON::Serializable
+  #
+  #   @[JSON::Field(key: "my_key", emit_null: true)]
+  #   getter a : Int32?
+  # end
+  # ```
+
+  # ```
+  # require "json"
+  #
   # struct A
   #   include JSON::Serializable
   #   @a : Int32
@@ -13,12 +24,14 @@
   # ```
   # require "json"
   #
-  # class A
+  # struct A
   #   include JSON::Serializable
-  #
-  #   @[JSON::Field(key: "my_key", emit_null: true)]
-  #   getter a : Int32?
+  #   include JSON::Serializable::Unmapped
+  #   @a : Int32
   # end
+  #
+  # a = A.from_json(%({"a":1,"b":2})) # => A(@json_unmapped={"b" => 2_i64}, @a=1)
+  # a.to_json                         # => {"a":1,"b":2}
   # ```
 
     # ```

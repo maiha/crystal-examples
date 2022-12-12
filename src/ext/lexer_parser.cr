@@ -110,8 +110,9 @@ class CommentSpec::LexerParser
     # FoundLiteral
       build ExpectStringEqual, {code: code, eq: escape_double_quotes($1)}
 
-    when /^=>\s*([A-Z][A-zA-Z0-9_]+(::[A-Z][A-zA-Z0-9_]+)*\(@.*)$/
-      build ExpectStringEqual, {code: code, eq: escape_double_quotes($1)}
+    # A(@a=1, @b=1.0)
+    when /^=>\s*([A-Z][a-zA-Z0-9_]*(::[A-Z][a-zA-Z0-9_]*)*\(@.*)$/
+      build ExpectInspectEqual, {code: code, eq: escape_double_quotes($1)}
 
     when /^=>\s*"(.*?)"$/
       build ExpectStringEqual, {code: code, eq: $1}

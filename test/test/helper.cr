@@ -1,3 +1,7 @@
+def __demodulize__(s)
+  s.gsub(/^(M__.*?::)+/,"")
+end
+
 def __time__(s)
   FUNC_TIME.parse(s)
 end

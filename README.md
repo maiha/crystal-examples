@@ -17,6 +17,7 @@ x # => UUID(ba714f86-cac6-42c7-8956-bcf5105e1b81)
 x # => 2016-02-15 04:35:50.0 UTC
 x # => NaN
 x # => #<Foo>
+x # => Foo(@a=1, @b=1.0)
 ```
 
 ## Requirements

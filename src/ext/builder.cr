@@ -3,7 +3,7 @@ class CommentSpec
   ### Modify
   class ExpectClass # < BaseBuilder(NamedTuple(code: String, eq: String))
     def build : String
-      "( %s ).class.to_s.gsub(/^(M__.*?::)+/,\"\").should eq( \"%s\" )" % [data["code"], data["eq"]]
+      "( __demodulize__(( %s ).class.to_s) ).should eq( \"%s\" )" % [data["code"], data["eq"]]
     end
   end
 
@@ -21,4 +21,9 @@ class CommentSpec
     end
   end
 
+  class ExpectInspectEqual < BaseBuilder(NamedTuple(code: String, eq: String))
+    def build : String
+      "( __demodulize__(( %s ).inspect) ).should eq( \"%s\" )" % [data["code"], data["eq"]]
+    end
+  end
 end
