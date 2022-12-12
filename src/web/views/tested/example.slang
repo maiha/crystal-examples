@@ -14,9 +14,9 @@
 - reasons[Data::Status::GENERAL] = "This is not a crystal code but a general text."
 - reasons[Data::Status::PSEUDO]  = "This is a pseudocode."
 - reasons[Data::Status::MACRO]   = "This is a macro."
-- reasons[Data::Status::RANDOM]  = "This provides random output."
+- reasons[Data::Status::RANDOM]  = "This can generate random output or depend on the execution environment."
 - reasons[Data::Status::WRONG]   = "This should be wrong. I'll fix this later."
-- reasons[Data::Status::PENDING] = "This can't be fixed immediately."
+- reasons[Data::Status::PENDING] = "This is hard to classify, so it is PENDING."
 
 div class="alert alert-#{style} #{eid}" role="alert"
   .alert-body
