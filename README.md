@@ -8,6 +8,17 @@ crystal examples checker
   <img src="https://user-images.githubusercontent.com/12258/54723801-22b11700-4bac-11e9-880a-9c17fc3b5645.png" width=200 />
 </p>
 
+## Supported Literals
+In addition to the standard crystal literals, the following literals may be used for comments.
+```crystal
+x # raises FooError
+x # => 10.00:00:00.000010000
+x # => UUID(ba714f86-cac6-42c7-8956-bcf5105e1b81)
+x # => 2016-02-15 04:35:50.0 UTC
+x # => NaN
+x # => #<Foo>
+```
+
 ## Requirements
 - `crystal-examples` : linux x86_64 static binary is [available](https://github.com/maiha/crystal-examples/releases)
 - `docker compose`
