@@ -1,7 +1,7 @@
 # yaml/schema/core.cr
 require "spec"
 require "../../../helper"
-# [heuristic:161] require yaml/schema/core.cr by:yaml/schema/core comment:yaml/schema/core.cr:1:20180101
+# [heuristic:163] require yaml/schema/core.cr by:yaml/schema/core comment:yaml/schema/core.cr:1:20180101
 require "yaml/schema/core"
 require "yaml"
 # yaml/schema/core.cr:1 (001)
