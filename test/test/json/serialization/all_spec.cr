@@ -25,7 +25,7 @@ struct A
   @b : Float64 = 1.0
 end
 
-( __demodulize__(( A.from_json(%<{"a":1}>) ).inspect) ).should eq( "A(@a=1, @b=1.0)" )
+( __sort_ivars__(__demodulize__(( A.from_json(%<{"a":1}>) ).inspect)) ).should eq( "A(@a=1, @b=1.0)" )
 puts "TEST_PASSED_SEQ=2" # :nocode:
 
 # json/serialization.cr:24 (003)
